@@ -131,6 +131,10 @@ public class TwitterClient {
         })
     }
     
+    func logout() {
+        self.session?.deauthorize()
+    }
+    
     public static func sessionManager() -> BDBOAuth1SessionManager {
         return BDBOAuth1SessionManager(
             baseURL: NSURL(string: TwitterClient.TWITTER_BASE),

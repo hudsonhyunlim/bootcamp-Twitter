@@ -11,6 +11,7 @@ import Foundation
 public final class TwitterApp {
     
     private static let SERIALIZED_USER_KEY = "com.lyft.serialized_user_key"
+    public static let LOGOUT_NOTIFICATION_KEY = "com.lyft.logout_notification"
     private static var _currentUser: User?
     private static let defaults = NSUserDefaults.standardUserDefaults()
     
@@ -40,6 +41,15 @@ public final class TwitterApp {
             }
             TwitterApp.defaults.synchronize()
         }
+    }
+    
+    public static func logout() {
+        TwitterClient.getInstance().logout()
+        TwitterApp.currentUser = nil
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(
+            TwitterApp.LOGOUT_NOTIFICATION_KEY,
+            object: nil)
     }
     
 }

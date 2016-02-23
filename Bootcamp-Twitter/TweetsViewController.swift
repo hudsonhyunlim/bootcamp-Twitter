@@ -33,6 +33,10 @@ class TweetsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func onLogoutTap(sender: UIBarButtonItem) {
+        TwitterApp.logout()
+    }
+    
     private func loadHomeTweets() {
         TwitterClient.getInstance().fetchTweets(
             { (tweets: [Tweet]?) -> Void in

@@ -140,7 +140,13 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="4TR-H0-aZa"/>
+                    <navigationItem key="navigationItem" id="4TR-H0-aZa">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="Zmd-Rb-Lxu">
+                            <connections>
+                                <action selector="onLogoutTap:" destination="t5e-ze-uPP" id="3Ov-WY-97f"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="tweetsTableView" destination="5cT-t3-BUq" id="1PL-cB-EBJ"/>
