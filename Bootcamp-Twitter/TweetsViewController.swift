@@ -36,7 +36,6 @@ class TweetsViewController: UIViewController {
     private func loadHomeTweets() {
         TwitterClient.getInstance().fetchTweets(
             { (tweets: [Tweet]?) -> Void in
-                print("foba")
                 self.tweets = tweets
                 self.tweetsTableView.reloadData()
             },
@@ -50,7 +49,6 @@ class TweetsViewController: UIViewController {
 extension TweetsViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        print("celly")
         let cell = tableView.dequeueReusableCellWithIdentifier("com.lyft.TweetCell", forIndexPath: indexPath) as! TweetCell
         
         if let tweets = self.tweets {
@@ -67,7 +65,6 @@ extension TweetsViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let tweets = self.tweets {
-            print("county")
             return tweets.count
         } else {
             return 0

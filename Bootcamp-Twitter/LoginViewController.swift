@@ -25,21 +25,14 @@ class LoginViewController: UIViewController {
     @IBAction func onLoginButtonTouchUp(sender: UIButton) {
         TwitterClient.getInstance().getOauth(
             {
-                print("Logged in")
-                self.performSegueWithIdentifier("com.lyft.segueToHome", sender: nil)
-                /*
-                self.twitterClient.fetchTweets(
-                    { (tweets: [Tweet]?) -> Void in
-                        if let tweets = tweets {
-                            for tweet in tweets {
-                                print(tweet.text)
-                            }
-                        }
+                TwitterClient.getInstance().fetchUser(
+                    { (user: User?) -> Void in
+                        TwitterApp.currentUser = user
+                        self.performSegueWithIdentifier("com.lyft.segueToHome", sender: nil)
                     },
                     failure: { (error: NSError) -> Void in
                         print(error)
                 })
-*/
             },
             failure: { (error: NSError!) -> Void in
                 print(error)

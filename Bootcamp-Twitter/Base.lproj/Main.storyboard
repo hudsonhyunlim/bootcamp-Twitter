@@ -47,7 +47,7 @@
         <!--Tweets View Controller-->
         <scene sceneID="mWm-Tz-quK">
             <objects>
-                <viewController id="t5e-ze-uPP" customClass="TweetsViewController" customModule="Bootcamp_Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="com.lyft.TweetsViewController" id="t5e-ze-uPP" customClass="TweetsViewController" customModule="Bootcamp_Twitter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1f3-Sl-QbT"/>
                         <viewControllerLayoutGuide type="bottom" id="i0j-rc-LOx"/>
@@ -57,7 +57,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="202" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5cT-t3-BUq">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="com.lyft.TweetCell" rowHeight="202" id="W2o-mW-RzQ" customClass="TweetCell" customModule="Bootcamp_Twitter" customModuleProvider="target">
@@ -128,11 +128,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="5cT-t3-BUq" firstAttribute="top" secondItem="1f3-Sl-QbT" secondAttribute="bottom" id="GwF-ec-7E2"/>
+                            <constraint firstItem="5cT-t3-BUq" firstAttribute="top" secondItem="1f3-Sl-QbT" secondAttribute="bottom" constant="-64" id="GwF-ec-7E2"/>
+                            <constraint firstItem="5cT-t3-BUq" firstAttribute="top" secondItem="LGn-lJ-CSL" secondAttribute="top" id="Ldr-hg-4lL"/>
                             <constraint firstAttribute="trailing" secondItem="5cT-t3-BUq" secondAttribute="trailing" id="Mbd-DZ-ZuP"/>
                             <constraint firstItem="5cT-t3-BUq" firstAttribute="leading" secondItem="LGn-lJ-CSL" secondAttribute="leading" id="mak-xV-BKh"/>
                             <constraint firstItem="i0j-rc-LOx" firstAttribute="top" secondItem="5cT-t3-BUq" secondAttribute="bottom" id="q5m-WY-icc"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="GwF-ec-7E2"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="4TR-H0-aZa"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -147,7 +153,7 @@
         <!--Navigation Controller-->
         <scene sceneID="fR4-3I-UfW">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Lij-d3-WDc" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="com.lyft.NavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Lij-d3-WDc" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yuu-7z-zkj">

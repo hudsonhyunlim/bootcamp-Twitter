@@ -72,7 +72,6 @@ public class TwitterClient {
             requestToken: requestToken,
             success: { (accessToken: BDBOAuth1Credential!) -> Void in
                 self.accessToken = accessToken
-                print("access token set")
                 self.loginSuccess?()
             },
             failure: { (error: NSError!) -> Void in

@@ -16,8 +16,10 @@ public class User: NSObject {
     var location: String?
     var retweetCount: Int = 0
     var userDescription: String?
+    var dictionary: NSDictionary?
     
     init (dictionary: NSDictionary) {
+        self.dictionary = dictionary
         self.name = dictionary["name"] as? String
         self.screenName = dictionary["screenName"] as? String
         self.location = dictionary["location"] as? String
