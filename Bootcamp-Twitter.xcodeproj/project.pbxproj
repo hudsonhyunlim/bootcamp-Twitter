@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3E7B61B654394A981A3815C3 /* Pods_Bootcamp_Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A3D7AE1288C1C4C45DE76ED /* Pods_Bootcamp_Twitter.framework */; };
+		713620E91C7BE69700DF07AD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713620E81C7BE69700DF07AD /* LoginViewController.swift */; };
+		713620EC1C7BE81500DF07AD /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713620EB1C7BE81500DF07AD /* TwitterClient.swift */; };
 		71C67A691C7BE27C00ABD953 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C67A681C7BE27C00ABD953 /* AppDelegate.swift */; };
 		71C67A6B1C7BE27C00ABD953 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C67A6A1C7BE27C00ABD953 /* ViewController.swift */; };
 		71C67A6E1C7BE27C00ABD953 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71C67A6C1C7BE27C00ABD953 /* Main.storyboard */; };
@@ -18,6 +20,8 @@
 /* Begin PBXFileReference section */
 		3A3D7AE1288C1C4C45DE76ED /* Pods_Bootcamp_Twitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bootcamp_Twitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DA1E64E7522D9D59EF0D63E /* Pods-Bootcamp-Twitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bootcamp-Twitter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bootcamp-Twitter/Pods-Bootcamp-Twitter.debug.xcconfig"; sourceTree = "<group>"; };
+		713620E81C7BE69700DF07AD /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		713620EB1C7BE81500DF07AD /* TwitterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
 		71C67A651C7BE27C00ABD953 /* Bootcamp-Twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bootcamp-Twitter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		71C67A681C7BE27C00ABD953 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71C67A6A1C7BE27C00ABD953 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -40,6 +44,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		713620E71C7BE65900DF07AD /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				713620E81C7BE69700DF07AD /* LoginViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		713620EA1C7BE78900DF07AD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		71C67A5C1C7BE27C00ABD953 = {
 			isa = PBXGroup;
 			children = (
@@ -61,12 +80,15 @@
 		71C67A671C7BE27C00ABD953 /* Bootcamp-Twitter */ = {
 			isa = PBXGroup;
 			children = (
+				713620EA1C7BE78900DF07AD /* Models */,
+				713620E71C7BE65900DF07AD /* View Controllers */,
 				71C67A681C7BE27C00ABD953 /* AppDelegate.swift */,
 				71C67A6A1C7BE27C00ABD953 /* ViewController.swift */,
 				71C67A6C1C7BE27C00ABD953 /* Main.storyboard */,
 				71C67A6F1C7BE27C00ABD953 /* Assets.xcassets */,
 				71C67A711C7BE27C00ABD953 /* LaunchScreen.storyboard */,
 				71C67A741C7BE27C00ABD953 /* Info.plist */,
+				713620EB1C7BE81500DF07AD /* TwitterClient.swift */,
 			);
 			path = "Bootcamp-Twitter";
 			sourceTree = "<group>";
@@ -210,6 +232,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				713620EC1C7BE81500DF07AD /* TwitterClient.swift in Sources */,
+				713620E91C7BE69700DF07AD /* LoginViewController.swift in Sources */,
 				71C67A6B1C7BE27C00ABD953 /* ViewController.swift in Sources */,
 				71C67A691C7BE27C00ABD953 /* AppDelegate.swift in Sources */,
 			);
