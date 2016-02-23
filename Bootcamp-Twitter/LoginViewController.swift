@@ -25,7 +25,25 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onLoginButtonTouchUp(sender: UIButton) {
-        self.twitterClient.getOauth()
+        self.twitterClient.getOauth(
+            {
+                print("Logged in")
+                self.twitterClient.fetchTweets(
+                    { (tweets: [Tweet]?) -> Void in
+                        if let tweets = tweets {
+                            for tweet in tweets {
+                                print(tweet.text)
+                            }
+                        }
+                    },
+                    failure: { (error: NSError) -> Void in
+                        print(error)
+                })
+            },
+            failure: { (error: NSError!) -> Void in
+                print(error)
+            }
+        )
     }
 
     /*

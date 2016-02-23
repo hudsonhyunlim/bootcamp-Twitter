@@ -13,6 +13,7 @@ public class TwitterClient {
     
     static let TWITTER_BASE = "https://api.twitter.com"
     static let VERIFY_CREDENTIALS = "1.1/account/verify_credentials.json"
+    static let HOME_TIME_LINE = "1.1/statuses/home_timeline.json"
     let REQUEST_TOKEN_URL = "oauth/request_token"
     let AUTHORIZE_URL = "https://api.twitter.com/oauth/authorize"
     let ACCESS_TOKEN_URL = "oauth/access_token"
@@ -21,14 +22,20 @@ public class TwitterClient {
     var accessToken:BDBOAuth1Credential?
     var session:BDBOAuth1SessionManager?
     
+    private var loginSuccess: (() -> Void)?
+    private var loginFailure: ((NSError!) -> Void)?
+    
     init() {
         self.session = TwitterClient.sessionManager()
     }
     
-    func getOauth() {
+    func getOauth(success: () -> Void, failure: (NSError!) -> Void) {
         guard let session = self.session else {
             return
         }
+        
+        self.loginSuccess = success
+        self.loginFailure = failure
         
         session.deauthorize()
         session.fetchRequestTokenWithPath(
@@ -42,6 +49,7 @@ public class TwitterClient {
             },
             failure: {(error: NSError!) -> Void in
                 print(error.localizedDescription)
+                failure(error)
         })
     }
     
@@ -56,15 +64,17 @@ public class TwitterClient {
             success: { (accessToken: BDBOAuth1Credential!) -> Void in
                 self.accessToken = accessToken
                 print("access token set")
+                self.loginSuccess?()
             },
             failure: { (error: NSError!) -> Void in
                 print(error.localizedDescription)
+                self.loginFailure?(error)
             })
     }
     
-    func fetchUser(complete: () -> Void) {
+    func fetchUser(success: (User?) -> Void, failure: (NSError) -> Void) {
         guard let session = self.session else {
-            complete()
+            success(nil)
             return
         }
         session.GET(
@@ -72,12 +82,45 @@ public class TwitterClient {
             parameters: nil,
             progress: nil,
             success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
-                print(response)
+                if let userDictionary = response as? NSDictionary {
+                    success(User(dictionary: userDictionary))
+                } else {
+                    success(nil)
+                }
             },
             failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
                 print(error.localizedDescription)
+                failure(error)
         })
 
+    }
+    
+    func fetchTweets(success: ([Tweet]?) -> Void, failure: (NSError) -> Void) {
+        guard let session = self.session else {
+            success(nil)
+            return
+        }
+        
+        session.GET(
+            TwitterClient.HOME_TIME_LINE,
+            parameters: nil,
+            progress: nil,
+            success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
+                if let tweetsArray = response as? [NSDictionary] {
+                    var tweets = [Tweet]()
+                    
+                    for tweetDict in tweetsArray {
+                        tweets.append(Tweet(dictionary: tweetDict))
+                    }
+                    
+                    success(tweets)
+                } else {
+                    success(nil)
+                }
+            },
+            failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+                failure(error)
+        })
     }
     
     public static func sessionManager() -> BDBOAuth1SessionManager {
