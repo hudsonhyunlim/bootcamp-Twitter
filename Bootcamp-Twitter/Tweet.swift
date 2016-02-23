@@ -14,6 +14,9 @@ public class Tweet: NSObject {
     var createdAt: NSDate?
     var retweetCount: Int = 0
     var favoritesCount: Int = 0
+    var userProfileImage: NSURL?
+    var userName: String?
+    var screenName: String?
     
     init (dictionary: NSDictionary) {
         self.text = dictionary["text"] as? String
@@ -26,6 +29,13 @@ public class Tweet: NSObject {
             
             self.createdAt = formatter.dateFromString(createdAt)
         }
+        
+        if let urlString = dictionary.valueForKeyPath("user.profile_image_url_https") as? String {
+            self.userProfileImage = NSURL(string: urlString)
+        }
+        
+        self.userName = dictionary.valueForKeyPath("user.name") as? String
+        self.screenName = dictionary.valueForKeyPath("user.screen_name") as? String
     }
     
 }

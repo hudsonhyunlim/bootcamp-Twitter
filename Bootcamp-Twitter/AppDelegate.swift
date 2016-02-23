@@ -44,8 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         let requestToken = BDBOAuth1Credential(queryString: url.query)
-        let lvc = self.window!.rootViewController as! LoginViewController
-        lvc.twitterClient.getAccess(requestToken)
+        TwitterClient.getInstance().getAccess(requestToken)
         
         return true
     }

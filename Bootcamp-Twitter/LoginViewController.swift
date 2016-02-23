@@ -10,8 +10,6 @@ import UIKit
 import BDBOAuth1Manager
 
 class LoginViewController: UIViewController {
-    
-    internal var twitterClient = TwitterClient()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +23,11 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onLoginButtonTouchUp(sender: UIButton) {
-        self.twitterClient.getOauth(
+        TwitterClient.getInstance().getOauth(
             {
                 print("Logged in")
+                self.performSegueWithIdentifier("com.lyft.segueToHome", sender: nil)
+                /*
                 self.twitterClient.fetchTweets(
                     { (tweets: [Tweet]?) -> Void in
                         if let tweets = tweets {
@@ -39,6 +39,7 @@ class LoginViewController: UIViewController {
                     failure: { (error: NSError) -> Void in
                         print(error)
                 })
+*/
             },
             failure: { (error: NSError!) -> Void in
                 print(error)

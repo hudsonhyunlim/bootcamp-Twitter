@@ -25,8 +25,17 @@ public class TwitterClient {
     private var loginSuccess: (() -> Void)?
     private var loginFailure: ((NSError!) -> Void)?
     
-    init() {
+    private static var instance:TwitterClient?
+    
+    private init() {
         self.session = TwitterClient.sessionManager()
+    }
+    
+    public static func getInstance() -> TwitterClient {
+        if TwitterClient.instance == nil {
+            TwitterClient.instance = TwitterClient()
+        }
+        return TwitterClient.instance!
     }
     
     func getOauth(success: () -> Void, failure: (NSError!) -> Void) {
