@@ -24,7 +24,14 @@ class TweetsViewController: UIViewController {
         self.tweetsTableView.rowHeight = UITableViewAutomaticDimension
         self.tweetsTableView.estimatedRowHeight = 120
         
-        self.loadHomeTweets()
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(
+            self,
+            action: "refreshControlAction:",
+            forControlEvents: UIControlEvents.ValueChanged)
+        self.tweetsTableView.insertSubview(refreshControl, atIndex: 0)
+        
+        self.loadHomeTweets(nil)
 
     }
 
@@ -37,14 +44,21 @@ class TweetsViewController: UIViewController {
         TwitterApp.logout()
     }
     
-    private func loadHomeTweets() {
+    private func loadHomeTweets(complete: (() -> Void)?) {
         TwitterClient.getInstance().fetchTweets(
             { (tweets: [Tweet]?) -> Void in
                 self.tweets = tweets
                 self.tweetsTableView.reloadData()
+                complete?()
             },
             failure: { (error: NSError) -> Void in
                 print(error)
+        })
+    }
+    
+    func refreshControlAction(refreshControl: UIRefreshControl) {
+        self.loadHomeTweets({
+            refreshControl.endRefreshing()
         })
     }
 
