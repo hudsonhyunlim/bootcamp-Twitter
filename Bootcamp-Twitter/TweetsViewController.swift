@@ -61,6 +61,13 @@ class TweetsViewController: UIViewController {
             refreshControl.endRefreshing()
         })
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+        if segue.identifier == "com.lyft.segueToNewTweet" {
+            
+        }
+    }
 
 }
 

@@ -146,6 +146,11 @@
                                 <action selector="onLogoutTap:" destination="t5e-ze-uPP" id="3Ov-WY-97f"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="New" id="GqG-fq-RqE">
+                            <connections>
+                                <segue destination="iEC-Bz-i2J" kind="presentation" id="ob6-FV-pVO"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
@@ -155,6 +160,93 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3bh-Pk-qJG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1289" y="260"/>
+        </scene>
+        <!--Tweet Edit View Controller-->
+        <scene sceneID="df6-4G-IhM">
+            <objects>
+                <viewController id="UsW-Ln-2AD" customClass="TweetEditViewController" customModule="Bootcamp_Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TKK-Tg-HNB"/>
+                        <viewControllerLayoutGuide type="bottom" id="z22-lU-MUY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1WY-jh-a4Y">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hJ7-j6-kXx">
+                                <rect key="frame" x="8" y="72" width="65" height="65"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="XTy-F4-Kta"/>
+                                    <constraint firstAttribute="width" constant="65" id="mCd-xJ-k68"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Super Cool Person" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I3L-kW-6Xk">
+                                <rect key="frame" x="77" y="72" width="143.5" height="19.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@supercoolperson" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ml2-0k-a0p">
+                                <rect key="frame" x="77" y="95" width="106" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Skd-HD-vR6">
+                                <rect key="frame" x="8" y="141" width="304" height="419"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Skd-HD-vR6" secondAttribute="trailing" constant="8" id="1yo-Q1-6gU"/>
+                            <constraint firstItem="I3L-kW-6Xk" firstAttribute="leading" secondItem="hJ7-j6-kXx" secondAttribute="trailing" constant="4" id="4y2-uk-M9V"/>
+                            <constraint firstItem="hJ7-j6-kXx" firstAttribute="top" secondItem="TKK-Tg-HNB" secondAttribute="bottom" constant="8" id="BOa-am-i1H"/>
+                            <constraint firstItem="I3L-kW-6Xk" firstAttribute="top" secondItem="TKK-Tg-HNB" secondAttribute="bottom" constant="8" id="HrX-Yk-yuI"/>
+                            <constraint firstItem="ml2-0k-a0p" firstAttribute="leading" secondItem="hJ7-j6-kXx" secondAttribute="trailing" constant="4" id="I8N-iE-4yC"/>
+                            <constraint firstItem="ml2-0k-a0p" firstAttribute="top" secondItem="I3L-kW-6Xk" secondAttribute="bottom" constant="4" id="RCO-S0-U6C"/>
+                            <constraint firstItem="I3L-kW-6Xk" firstAttribute="centerX" secondItem="1WY-jh-a4Y" secondAttribute="centerX" id="XFM-BV-HDx"/>
+                            <constraint firstItem="ml2-0k-a0p" firstAttribute="centerX" secondItem="1WY-jh-a4Y" secondAttribute="centerX" id="ZYS-Wr-TCs"/>
+                            <constraint firstItem="hJ7-j6-kXx" firstAttribute="leading" secondItem="1WY-jh-a4Y" secondAttribute="leading" constant="8" id="c1X-TT-DnA"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ml2-0k-a0p" secondAttribute="trailing" constant="8" id="dfF-D7-n0O"/>
+                            <constraint firstItem="z22-lU-MUY" firstAttribute="top" secondItem="Skd-HD-vR6" secondAttribute="bottom" constant="8" id="rfB-UX-NVm"/>
+                            <constraint firstItem="Skd-HD-vR6" firstAttribute="leading" secondItem="1WY-jh-a4Y" secondAttribute="leading" constant="8" id="u8d-kE-hlk"/>
+                            <constraint firstItem="Skd-HD-vR6" firstAttribute="top" secondItem="hJ7-j6-kXx" secondAttribute="bottom" constant="4" id="y5w-mV-OrA"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="I3L-kW-6Xk" secondAttribute="trailing" constant="8" id="zUJ-JB-82b"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="XFM-BV-HDx"/>
+                                <exclude reference="ZYS-Wr-TCs"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="SzC-gX-41A">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="kmN-iG-inG">
+                            <connections>
+                                <action selector="onCancel:" destination="UsW-Ln-2AD" id="aBE-l8-qby"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Post" id="Jc8-m7-4io">
+                            <connections>
+                                <action selector="onPost:" destination="UsW-Ln-2AD" id="WnD-OI-gXb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="postButton" destination="Jc8-m7-4io" id="PS8-Zs-fsR"/>
+                        <outlet property="screenNameLabel" destination="ml2-0k-a0p" id="HAm-bj-JS5"/>
+                        <outlet property="tweetEditTextView" destination="Skd-HD-vR6" id="0tS-Ap-1J3"/>
+                        <outlet property="userNameLabel" destination="I3L-kW-6Xk" id="XMs-Sg-nSV"/>
+                        <outlet property="userProfileImage" destination="hJ7-j6-kXx" id="lkd-Ys-E9e"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RXS-o9-jxr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1720" y="1038"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fR4-3I-UfW">
@@ -174,6 +266,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mQ1-fo-UEW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="808" y="260"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jdl-LP-Imr">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iEC-Bz-i2J" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="i0p-af-4DY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="UsW-Ln-2AD" kind="relationship" relationship="rootViewController" id="ds8-fR-LRm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sc4-bv-ozC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1289" y="1038"/>
         </scene>
     </scenes>
 </document>

@@ -21,12 +21,12 @@ public class User: NSObject {
     init (dictionary: NSDictionary) {
         self.dictionary = dictionary
         self.name = dictionary["name"] as? String
-        self.screenName = dictionary["screenName"] as? String
+        self.screenName = dictionary["screen_name"] as? String
         self.location = dictionary["location"] as? String
         self.retweetCount = dictionary["retweet_count"] as? Int ?? 0
         self.userDescription = dictionary["description"] as? String
         
-        if let url = dictionary["profile_background_image_url_https"] as? String {
+        if let url = dictionary["profile_image_url_https"] as? String {
             self.profileImageUrl = NSURL(string: url)
         }
     }
