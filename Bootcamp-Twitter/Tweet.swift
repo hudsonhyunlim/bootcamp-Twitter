@@ -22,6 +22,7 @@ public class Tweet: NSObject {
     var screenName: String?
     var inReplyToScreenName: String?
     var retweeted: Bool?
+    var favorited: Bool?
     
     init (dictionary: NSDictionary) {
         self.idStr = dictionary["id_str"] as? String
@@ -44,6 +45,7 @@ public class Tweet: NSObject {
         self.screenName = dictionary.valueForKeyPath("user.screen_name") as? String
         self.inReplyToScreenName = dictionary["in_reply_to_screen_name"] as? String
         self.retweeted = dictionary["retweeted"] as? Bool
+        self.favorited = dictionary["favorited"] as? Bool
         
     }
     

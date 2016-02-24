@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public final class TwitterApp {
     
@@ -14,6 +15,9 @@ public final class TwitterApp {
     public static let LOGOUT_NOTIFICATION_KEY = "com.lyft.logout_notification"
     private static var _currentUser: User?
     private static let defaults = NSUserDefaults.standardUserDefaults()
+    
+    public static let favoriteOn = UIImage(named: "like-action-on")
+    public static let favoriteOff = UIImage(named: "like-action")
     
     public static var currentUser: User? {
         get {

@@ -18,7 +18,17 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet weak var retweetCountLabel: UILabel!
     @IBOutlet weak var favoritesCountLabel: UILabel!
     
-    weak var tweet:Tweet?
+    @IBOutlet weak var replayButton: UIButton!
+    @IBOutlet weak var retweetButton: UIButton!
+    @IBOutlet weak var favoriteButton: UIButton!
+    
+    var tweet:Tweet? {
+        didSet {
+            if self.profileImageView != nil {
+                self.mapTweetToUI()
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +50,54 @@ class TweetDetailViewController: UIViewController {
             self.tweetTextLabel.text = tweet.text
             self.retweetCountLabel.text = String(tweet.retweetCount)
             self.favoritesCountLabel.text = String(tweet.favoritesCount)
+            
+            if let favorited = tweet.favorited {
+                self.setFavoriteButton(favorited)
+            }
         }
     }
 
+    @IBAction func onReplyTouch(sender: UIButton) {
+    }
+    
+    @IBAction func onRetweetTouch(sender: UIButton) {
+    }
+    
+    @IBAction func onFavoriteTouch(sender: UIButton) {
+        let client = TwitterClient.getInstance()
+        
+        if client.postInFlight {
+            return
+        }
+        
+        if let tweet = self.tweet,
+           let favorited = tweet.favorited,
+           let idStr = tweet.idStr {
+            self.setFavoriteButton(!favorited)
+            if favorited {
+                client.favoriteDestroy(
+                    idStr,
+                    success: { (tweet: Tweet) -> Void in
+                        self.tweet = tweet
+                    },
+                    failure: { (error: NSError?) -> Void in
+                        print(error)
+                })
+            } else {
+                client.favoriteCreate(
+                    idStr,
+                    success: { (tweet: Tweet) -> Void in
+                        self.tweet = tweet
+                    },
+                    failure: { (error: NSError?) -> Void in
+                        print(error)
+                })
+            }
+        }
+    }
+    
+    private func setFavoriteButton(favorited: Bool) {
+        let favoriteImage = favorited ? TwitterApp.favoriteOn : TwitterApp.favoriteOff
+        self.favoriteButton.setBackgroundImage(favoriteImage, forState: UIControlState.Normal)
+    }
 }

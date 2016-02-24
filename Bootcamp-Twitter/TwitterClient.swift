@@ -15,6 +15,8 @@ public class TwitterClient {
     static let VERIFY_CREDENTIALS = "1.1/account/verify_credentials.json"
     static let HOME_TIME_LINE = "1.1/statuses/home_timeline.json"
     static let STATUSES_UPDATE = "1.1/statuses/update.json"
+    static let FAVORITE_CREATE = "1.1/favorites/create.json"
+    static let FAVORITE_DESTROY = "1.1/favorites/destroy.json"
     let REQUEST_TOKEN_URL = "oauth/request_token"
     let AUTHORIZE_URL = "https://api.twitter.com/oauth/authorize"
     let ACCESS_TOKEN_URL = "oauth/access_token"
@@ -25,6 +27,8 @@ public class TwitterClient {
     
     private var loginSuccess: (() -> Void)?
     private var loginFailure: ((NSError!) -> Void)?
+    
+    public var postInFlight: Bool = false
     
     private static var instance:TwitterClient?
     
@@ -133,11 +137,6 @@ public class TwitterClient {
     }
     
     func updateStatus(status: String, inReplyToStatusId: String?, success: (Tweet) -> Void, failure: (NSError?) -> Void) {
-        guard let session = self.session else {
-            failure(nil)
-            return
-        }
-        
         var params = [
             "status": status
         ]
@@ -145,17 +144,61 @@ public class TwitterClient {
             params["in_reply_to_status_id"] = inReplyToStatusId
         }
         
-        session.POST(
+        self.post(
             TwitterClient.STATUSES_UPDATE,
+            params: params,
+            success: success,
+            failure: failure)
+    }
+    
+    func favoriteCreate(id: String, success: (Tweet) -> Void, failure: (NSError?) -> Void) {
+        let params = [
+            "id": id
+        ]
+        self.post(
+            TwitterClient.FAVORITE_CREATE,
+            params: params,
+            success: success,
+            failure: failure)
+    }
+    
+    func favoriteDestroy(id: String, success: (Tweet) -> Void, failure: (NSError?) -> Void) {
+        let params = [
+            "id": id
+        ]
+        self.post(
+            TwitterClient.FAVORITE_DESTROY,
+            params: params,
+            success: success,
+            failure: failure)
+    }
+    
+    private func post(url: String, params: [String:String], success: (Tweet) -> Void, failure: (NSError?) -> Void) {
+        guard let session = self.session else {
+            failure(nil)
+            return
+        }
+        
+        if self.postInFlight {
+            failure(nil)
+            return
+        }
+        
+        self.postInFlight = true
+        
+        session.POST(
+            url,
             parameters: params,
             progress: nil,
             success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
                 if let tweetDict = response as? NSDictionary {
                     let tweet = Tweet(dictionary: tweetDict)
+                    self.postInFlight = false
                     success(tweet)
                 }
             },
             failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+                self.postInFlight = false
                 failure(error)
         })
     }
