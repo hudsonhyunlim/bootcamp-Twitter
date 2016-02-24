@@ -54,6 +54,10 @@ class TweetDetailViewController: UIViewController {
             if let favorited = tweet.favorited {
                 self.setFavoriteButton(favorited)
             }
+            
+            if let retweeted = tweet.retweeted {
+                self.setRetweetButton(retweeted)
+            }
         }
     }
 
@@ -61,6 +65,36 @@ class TweetDetailViewController: UIViewController {
     }
     
     @IBAction func onRetweetTouch(sender: UIButton) {
+        let client = TwitterClient.getInstance()
+        
+        if client.postInFlight {
+            return
+        }
+        
+        if let tweet = self.tweet,
+           let retweeted = tweet.retweeted,
+           let idStr = tweet.idStr {
+            self.setRetweetButton(!retweeted)
+            if retweeted {
+                client.unretweet(
+                    idStr,
+                    success: { (tweet: Tweet) -> Void in
+                        self.tweet?.retweeted = false
+                    },
+                    failure: { (error: NSError?) -> Void in
+                        print(error)
+                })
+            } else {
+                client.retweet(
+                    idStr,
+                    success: { (tweet: Tweet) -> Void in
+                        self.tweet?.retweeted = true
+                    },
+                    failure: { (error: NSError?) -> Void in
+                        print(error)
+                })
+            }
+        }
     }
     
     @IBAction func onFavoriteTouch(sender: UIButton) {
@@ -99,5 +133,10 @@ class TweetDetailViewController: UIViewController {
     private func setFavoriteButton(favorited: Bool) {
         let favoriteImage = favorited ? TwitterApp.favoriteOn : TwitterApp.favoriteOff
         self.favoriteButton.setBackgroundImage(favoriteImage, forState: UIControlState.Normal)
+    }
+    
+    private func setRetweetButton(retweeted: Bool) {
+        let retweetImage = retweeted ? TwitterApp.retweetOn : TwitterApp.retweetOff
+        self.retweetButton.setBackgroundImage(retweetImage, forState: UIControlState.Normal)
     }
 }

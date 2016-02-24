@@ -17,6 +17,8 @@ public class TwitterClient {
     static let STATUSES_UPDATE = "1.1/statuses/update.json"
     static let FAVORITE_CREATE = "1.1/favorites/create.json"
     static let FAVORITE_DESTROY = "1.1/favorites/destroy.json"
+    static let RETWEET = "1.1/statuses/retweet/"
+    static let UNRETWEET = "1.1/statuses/unretweet/"
     let REQUEST_TOKEN_URL = "oauth/request_token"
     let AUTHORIZE_URL = "https://api.twitter.com/oauth/authorize"
     let ACCESS_TOKEN_URL = "oauth/access_token"
@@ -172,6 +174,29 @@ public class TwitterClient {
             success: success,
             failure: failure)
     }
+    
+    func retweet(id: String, success: (Tweet) -> Void, failure: (NSError?) -> Void) {
+        let params = [
+            "id": id
+        ]
+        self.post(
+            TwitterClient.RETWEET + "\(id).json",
+            params: params,
+            success: success,
+            failure: failure)
+    }
+    
+    func unretweet(id: String, success: (Tweet) -> Void, failure: (NSError?) -> Void) {
+        let params = [
+            "id": id
+        ]
+        self.post(
+            TwitterClient.UNRETWEET + "\(id).json",
+            params: params,
+            success: success,
+            failure: failure)
+    }
+    
     
     private func post(url: String, params: [String:String], success: (Tweet) -> Void, failure: (NSError?) -> Void) {
         guard let session = self.session else {

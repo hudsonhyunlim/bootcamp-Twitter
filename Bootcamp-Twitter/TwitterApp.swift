@@ -18,6 +18,8 @@ public final class TwitterApp {
     
     public static let favoriteOn = UIImage(named: "like-action-on")
     public static let favoriteOff = UIImage(named: "like-action")
+    public static let retweetOn = UIImage(named: "retweet-action-on")
+    public static let retweetOff = UIImage(named: "retweet-action")
     
     public static var currentUser: User? {
         get {
