@@ -42,9 +42,22 @@ class TweetEditViewController: UIViewController {
     @IBAction func onPost(sender: UIBarButtonItem) {
         if let text = self.tweetEditTextView.text {
             if text.characters.count <= Tweet.CHARACTER_LIMIT {
-                self.dismissViewControllerAnimated(
-                    true,
-                    completion: nil)
+                TwitterClient.getInstance().updateStatus(
+                    text,
+                    inReplyToStatusId: nil,
+                    success: { (tweet: Tweet) -> Void in
+                        print("tweeted successfully")
+                        print(tweet.idStr)
+                        self.dismissViewControllerAnimated(
+                            true,
+                            completion: nil)
+                    },
+                    failure: { (error: NSError?) -> Void in
+                        if let error = error {
+                            print("tweet failed")
+                            print(error)
+                        }
+                })
             } else {
                 print("character limit")
             }

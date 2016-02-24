@@ -14,6 +14,7 @@ public class TwitterClient {
     static let TWITTER_BASE = "https://api.twitter.com"
     static let VERIFY_CREDENTIALS = "1.1/account/verify_credentials.json"
     static let HOME_TIME_LINE = "1.1/statuses/home_timeline.json"
+    static let STATUSES_UPDATE = "1.1/statuses/update.json"
     let REQUEST_TOKEN_URL = "oauth/request_token"
     let AUTHORIZE_URL = "https://api.twitter.com/oauth/authorize"
     let ACCESS_TOKEN_URL = "oauth/access_token"
@@ -124,6 +125,34 @@ public class TwitterClient {
                     success(tweets)
                 } else {
                     success(nil)
+                }
+            },
+            failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+                failure(error)
+        })
+    }
+    
+    func updateStatus(status: String, inReplyToStatusId: String?, success: (Tweet) -> Void, failure: (NSError?) -> Void) {
+        guard let session = self.session else {
+            failure(nil)
+            return
+        }
+        
+        var params = [
+            "status": status
+        ]
+        if let inReplyToStatusId = inReplyToStatusId {
+            params["in_reply_to_status_id"] = inReplyToStatusId
+        }
+        
+        session.POST(
+            TwitterClient.STATUSES_UPDATE,
+            parameters: params,
+            progress: nil,
+            success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
+                if let tweetDict = response as? NSDictionary {
+                    let tweet = Tweet(dictionary: tweetDict)
+                    success(tweet)
                 }
             },
             failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in

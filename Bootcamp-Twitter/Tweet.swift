@@ -12,6 +12,7 @@ public class Tweet: NSObject {
     
     public static let CHARACTER_LIMIT: Int = 140
     
+    var idStr: String?
     var text: String?
     var createdAt: NSDate?
     var retweetCount: Int = 0
@@ -21,6 +22,7 @@ public class Tweet: NSObject {
     var screenName: String?
     
     init (dictionary: NSDictionary) {
+        self.idStr = dictionary["id_str"] as? String
         self.text = dictionary["text"] as? String
         self.retweetCount = dictionary["retweet_count"] as? Int ?? 0
         self.favoritesCount = dictionary["favorites_count"] as? Int ?? 0
