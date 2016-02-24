@@ -33,5 +33,12 @@ class TweetCell: UITableViewCell {
             }
         }
     }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.profileImageView.layer.cornerRadius = 5
+        self.profileImageView.clipsToBounds = true
+    }
 
 }
