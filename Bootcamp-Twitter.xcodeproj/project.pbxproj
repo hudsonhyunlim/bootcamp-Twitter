@@ -15,6 +15,7 @@
 		713620F11C7C2B9700DF07AD /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713620F01C7C2B9700DF07AD /* Tweet.swift */; };
 		713620F41C7C3BE300DF07AD /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713620F31C7C3BE300DF07AD /* TweetCell.swift */; };
 		71400BD51C7D26540039EB29 /* TweetEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71400BD41C7D26540039EB29 /* TweetEditViewController.swift */; };
+		716978551C7D541B00EFBB94 /* TweetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716978541C7D541B00EFBB94 /* TweetDetailViewController.swift */; };
 		71C67A691C7BE27C00ABD953 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C67A681C7BE27C00ABD953 /* AppDelegate.swift */; };
 		71C67A6B1C7BE27C00ABD953 /* TweetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C67A6A1C7BE27C00ABD953 /* TweetsViewController.swift */; };
 		71C67A6E1C7BE27C00ABD953 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71C67A6C1C7BE27C00ABD953 /* Main.storyboard */; };
@@ -32,6 +33,7 @@
 		713620F01C7C2B9700DF07AD /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		713620F31C7C3BE300DF07AD /* TweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 		71400BD41C7D26540039EB29 /* TweetEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetEditViewController.swift; sourceTree = "<group>"; };
+		716978541C7D541B00EFBB94 /* TweetDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetDetailViewController.swift; sourceTree = "<group>"; };
 		71C67A651C7BE27C00ABD953 /* Bootcamp-Twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bootcamp-Twitter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		71C67A681C7BE27C00ABD953 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71C67A6A1C7BE27C00ABD953 /* TweetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetsViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 				713620E81C7BE69700DF07AD /* LoginViewController.swift */,
 				71C67A6A1C7BE27C00ABD953 /* TweetsViewController.swift */,
 				71400BD41C7D26540039EB29 /* TweetEditViewController.swift */,
+				716978541C7D541B00EFBB94 /* TweetDetailViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				713620EF1C7C2A0E00DF07AD /* User.swift in Sources */,
 				71C67A691C7BE27C00ABD953 /* AppDelegate.swift in Sources */,
 				7116E9621C7CF06700B4E024 /* TwitterApp.swift in Sources */,
+				716978551C7D541B00EFBB94 /* TweetDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

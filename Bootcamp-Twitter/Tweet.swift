@@ -20,6 +20,8 @@ public class Tweet: NSObject {
     var userProfileImage: NSURL?
     var userName: String?
     var screenName: String?
+    var inReplyToScreenName: String?
+    var retweeted: Bool?
     
     init (dictionary: NSDictionary) {
         self.idStr = dictionary["id_str"] as? String
@@ -40,6 +42,9 @@ public class Tweet: NSObject {
         
         self.userName = dictionary.valueForKeyPath("user.name") as? String
         self.screenName = dictionary.valueForKeyPath("user.screen_name") as? String
+        self.inReplyToScreenName = dictionary["in_reply_to_screen_name"] as? String
+        self.retweeted = dictionary["retweeted"] as? Bool
+        
     }
     
 }

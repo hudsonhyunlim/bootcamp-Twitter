@@ -64,8 +64,14 @@ class TweetsViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         super.prepareForSegue(segue, sender: sender)
-        if segue.identifier == "com.lyft.segueToNewTweet" {
-            
+        if segue.identifier == "com.lyft.segueToTweetDetail" {
+            if let cell = sender as? TweetCell,
+               let tweets = self.tweets,
+               let vc = segue.destinationViewController as? TweetDetailViewController,
+               let indexPath = self.tweetsTableView.indexPathForCell(cell) {
+                let tweet = tweets[indexPath.row]
+                vc.tweet = tweet
+            }
         }
     }
 

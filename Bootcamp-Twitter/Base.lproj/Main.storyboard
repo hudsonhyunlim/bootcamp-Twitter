@@ -77,7 +77,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgK-9O-2Ch">
                                                     <rect key="frame" x="77" y="8" width="85.5" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="@screenname" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ki7-nq-8OQ">
@@ -95,7 +95,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blah Blah Blah tweet" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v1m-oq-Vos">
                                                     <rect key="frame" x="77" y="31.5" width="132" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -121,6 +121,7 @@
                                             <outlet property="screenNameLabel" destination="ki7-nq-8OQ" id="XAt-Zl-4O1"/>
                                             <outlet property="tweetLabel" destination="v1m-oq-Vos" id="Et8-OV-kdK"/>
                                             <outlet property="userNameLabel" destination="hgK-9O-2Ch" id="hwJ-QR-Rkv"/>
+                                            <segue destination="EVO-fb-sdb" kind="show" id="zXd-4e-qG7"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -161,6 +162,33 @@
             </objects>
             <point key="canvasLocation" x="1289" y="260"/>
         </scene>
+        <!--Tweet-->
+        <scene sceneID="O9q-Ng-uD0">
+            <objects>
+                <viewController id="pWJ-M1-KgU" customClass="TweetDetailViewController" customModule="Bootcamp_Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CXQ-Am-N8Q"/>
+                        <viewControllerLayoutGuide type="bottom" id="961-9j-3vx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oVP-0H-V3z">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Tweet" id="UmW-Qr-Zlv">
+                        <barButtonItem key="leftBarButtonItem" title="Home" id="iK4-4U-XKg">
+                            <connections>
+                                <action selector="onHomeTap:" destination="pWJ-M1-KgU" id="d4D-9S-rM5"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Reply" id="vph-8a-bVR"/>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yeh-0q-w35" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2218" y="260"/>
+        </scene>
         <!--Tweet Edit View Controller-->
         <scene sceneID="df6-4G-IhM">
             <objects>
@@ -183,7 +211,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Super Cool Person" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I3L-kW-6Xk">
                                 <rect key="frame" x="77" y="72" width="143.5" height="19.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@supercoolperson" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ml2-0k-a0p">
@@ -294,6 +322,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sc4-bv-ozC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1289" y="1038"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="peM-Kz-51d">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EVO-fb-sdb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="goB-KP-Eh7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="pWJ-M1-KgU" kind="relationship" relationship="rootViewController" id="8Gy-T8-ggV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QMl-3v-ph7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1769" y="260"/>
         </scene>
     </scenes>
 </document>
