@@ -14,6 +14,7 @@ class TweetEditViewController: UIViewController {
     @IBOutlet weak var userProfileImage: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var screenNameLabel: UILabel!
+    @IBOutlet weak var charactersLabel: UILabel!
     @IBOutlet weak var tweetEditTextView: UITextView!
     @IBOutlet weak var postButton: UIBarButtonItem!
     
@@ -33,13 +34,21 @@ class TweetEditViewController: UIViewController {
         
         self.tweetEditTextView.delegate = self
         
+        self.handleUniversalChange()
+        
         self.tweetEditTextView.becomeFirstResponder()
     }
     
     @IBAction func onPost(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(
-            true,
-            completion: nil)
+        if let text = self.tweetEditTextView.text {
+            if text.characters.count <= Tweet.CHARACTER_LIMIT {
+                self.dismissViewControllerAnimated(
+                    true,
+                    completion: nil)
+            } else {
+                print("character limit")
+            }
+        }
     }
     
     @IBAction func onCancel(sender: UIBarButtonItem) {
@@ -48,18 +57,26 @@ class TweetEditViewController: UIViewController {
             completion: nil)
     }
     
+    private func handleUniversalChange() {
+        if let text = self.tweetEditTextView.text {
+            let count = text.characters.count
+            if count > Tweet.CHARACTER_LIMIT {
+                self.postButton.tintColor = UIColor.grayColor()
+                self.charactersLabel.textColor = UIColor.redColor()
+            } else {
+                self.postButton.tintColor = UIColor.blueColor()
+                self.charactersLabel.textColor = UIColor.grayColor()
+            }
+            self.charactersLabel.text = String(Tweet.CHARACTER_LIMIT - count)
+        }
+    }
+    
 }
 
 extension TweetEditViewController: UITextViewDelegate {
     
     func textViewDidChange(textView: UITextView) {
-        if let text = textView.text {
-            if text.characters.count > 140 {
-                self.postButton.tintColor = UIColor.grayColor()
-            } else {
-                self.postButton.tintColor = UIColor.blueColor()
-            }
-        }
+        self.handleUniversalChange()
     }
     
 }

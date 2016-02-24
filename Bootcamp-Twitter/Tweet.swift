@@ -10,6 +10,8 @@ import Foundation
 
 public class Tweet: NSObject {
     
+    public static let CHARACTER_LIMIT: Int = 140
+    
     var text: String?
     var createdAt: NSDate?
     var retweetCount: Int = 0

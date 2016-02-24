@@ -192,6 +192,12 @@
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="140" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Jq-a5-QHw">
+                                <rect key="frame" x="291" y="72" width="21" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Skd-HD-vR6">
                                 <rect key="frame" x="8" y="141" width="304" height="419"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -206,15 +212,17 @@
                             <constraint firstItem="hJ7-j6-kXx" firstAttribute="top" secondItem="TKK-Tg-HNB" secondAttribute="bottom" constant="8" id="BOa-am-i1H"/>
                             <constraint firstItem="I3L-kW-6Xk" firstAttribute="top" secondItem="TKK-Tg-HNB" secondAttribute="bottom" constant="8" id="HrX-Yk-yuI"/>
                             <constraint firstItem="ml2-0k-a0p" firstAttribute="leading" secondItem="hJ7-j6-kXx" secondAttribute="trailing" constant="4" id="I8N-iE-4yC"/>
+                            <constraint firstItem="8Jq-a5-QHw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="I3L-kW-6Xk" secondAttribute="trailing" constant="4" id="IaL-6G-Odw"/>
                             <constraint firstItem="ml2-0k-a0p" firstAttribute="top" secondItem="I3L-kW-6Xk" secondAttribute="bottom" constant="4" id="RCO-S0-U6C"/>
                             <constraint firstItem="I3L-kW-6Xk" firstAttribute="centerX" secondItem="1WY-jh-a4Y" secondAttribute="centerX" id="XFM-BV-HDx"/>
                             <constraint firstItem="ml2-0k-a0p" firstAttribute="centerX" secondItem="1WY-jh-a4Y" secondAttribute="centerX" id="ZYS-Wr-TCs"/>
                             <constraint firstItem="hJ7-j6-kXx" firstAttribute="leading" secondItem="1WY-jh-a4Y" secondAttribute="leading" constant="8" id="c1X-TT-DnA"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ml2-0k-a0p" secondAttribute="trailing" constant="8" id="dfF-D7-n0O"/>
+                            <constraint firstAttribute="trailing" secondItem="8Jq-a5-QHw" secondAttribute="trailing" constant="8" id="gWP-OV-yXb"/>
+                            <constraint firstItem="8Jq-a5-QHw" firstAttribute="top" secondItem="TKK-Tg-HNB" secondAttribute="bottom" constant="8" id="oYd-ch-eAr"/>
                             <constraint firstItem="z22-lU-MUY" firstAttribute="top" secondItem="Skd-HD-vR6" secondAttribute="bottom" constant="8" id="rfB-UX-NVm"/>
                             <constraint firstItem="Skd-HD-vR6" firstAttribute="leading" secondItem="1WY-jh-a4Y" secondAttribute="leading" constant="8" id="u8d-kE-hlk"/>
                             <constraint firstItem="Skd-HD-vR6" firstAttribute="top" secondItem="hJ7-j6-kXx" secondAttribute="bottom" constant="4" id="y5w-mV-OrA"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="I3L-kW-6Xk" secondAttribute="trailing" constant="8" id="zUJ-JB-82b"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -237,6 +245,7 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="charactersLabel" destination="8Jq-a5-QHw" id="8oP-UO-edK"/>
                         <outlet property="postButton" destination="Jc8-m7-4io" id="PS8-Zs-fsR"/>
                         <outlet property="screenNameLabel" destination="ml2-0k-a0p" id="HAm-bj-JS5"/>
                         <outlet property="tweetEditTextView" destination="Skd-HD-vR6" id="0tS-Ap-1J3"/>
