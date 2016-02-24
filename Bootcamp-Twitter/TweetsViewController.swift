@@ -67,7 +67,8 @@ class TweetsViewController: UIViewController {
         if segue.identifier == "com.lyft.segueToTweetDetail" {
             if let cell = sender as? TweetCell,
                let tweets = self.tweets,
-               let vc = segue.destinationViewController as? TweetDetailViewController,
+               let navVc = segue.destinationViewController as? UINavigationController,
+               let vc = navVc.topViewController as? TweetDetailViewController,
                let indexPath = self.tweetsTableView.indexPathForCell(cell) {
                 let tweet = tweets[indexPath.row]
                 vc.tweet = tweet
