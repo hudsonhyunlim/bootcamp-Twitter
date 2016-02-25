@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import TimeAgoInWords
 
 public final class TwitterApp {
     
@@ -21,6 +22,22 @@ public final class TwitterApp {
     public static let retweetOn = UIImage(named: "retweet-action-on")
     public static let retweetOff = UIImage(named: "retweet-action")
     
+    private let railsStrings = [
+        "LessThan": "<",
+        "About": "",
+        "Over": "over ",
+        "Almost": "almost ",
+        "Seconds": "s",
+        "Minute": "m",
+        "Minutes": "m",
+        "Hour": "h",
+        "Hours": "h",
+        "Day": "d",
+        "Days": "d",
+        "Months": "m",
+        "Years": "y",
+    ]
+    
     public enum TweetListType {
         case Home
     }
@@ -30,6 +47,7 @@ public final class TwitterApp {
     
     private init() {
         self.cachedTweets[TweetListType.Home] = [Tweet]()
+        TimeAgoInWordsStrings.updateStrings(railsStrings)
     }
     
     public static func getInstance() -> TwitterApp {

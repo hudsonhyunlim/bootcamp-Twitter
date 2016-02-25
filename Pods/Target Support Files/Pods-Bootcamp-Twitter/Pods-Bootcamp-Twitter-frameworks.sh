@@ -86,8 +86,10 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Bootcamp-Twitter/AFNetworking.framework"
   install_framework "Pods-Bootcamp-Twitter/BDBOAuth1Manager.framework"
+  install_framework "Pods-Bootcamp-Twitter/TimeAgoInWords.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Bootcamp-Twitter/AFNetworking.framework"
   install_framework "Pods-Bootcamp-Twitter/BDBOAuth1Manager.framework"
+  install_framework "Pods-Bootcamp-Twitter/TimeAgoInWords.framework"
 fi

@@ -15,6 +15,7 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var screenNameLabel: UILabel!
     @IBOutlet weak var tweetLabel: UILabel!
+    @IBOutlet weak var sinceLabel: UILabel!
     
     var tweet: Tweet? {
         didSet {
@@ -30,6 +31,9 @@ class TweetCell: UITableViewCell {
             }
             if let tweetText = tweet?.text {
                 self.tweetLabel.text = tweetText
+            }
+            if let relative = tweet?.getAutoRelativeCreatedAt() {
+                self.sinceLabel.text = relative
             }
         }
     }

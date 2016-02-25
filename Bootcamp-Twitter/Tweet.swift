@@ -7,11 +7,13 @@
 //
 
 import Foundation
+import TimeAgoInWords
 
 public class Tweet: NSObject {
     
     public static let CHARACTER_LIMIT: Int = 140
     public static var dateFormatter = NSDateFormatter()
+    public static let ONE_HOUR = 60.0 * 60.0
     
     var idStr: String?
     var text: String?
@@ -49,10 +51,23 @@ public class Tweet: NSObject {
         
     }
     
-    func getReadableCreatedAt() -> String? {
+    func getReadableCreatedAt(withHour:Bool = true) -> String? {
         if let createdAt = self.createdAt {
-            Tweet.dateFormatter.dateFormat = "MM/DD/YY, h:mm a"
+            Tweet.dateFormatter.dateFormat = "MM/d/YY" + (withHour ? ", h:mm a" : "")
             return Tweet.dateFormatter.stringFromDate(createdAt)
+        }
+        return nil
+    }
+    
+    func getAutoRelativeCreatedAt() -> String? {
+        if let createdAt = self.createdAt {
+            let interval = -createdAt.timeIntervalSinceNow
+            if interval > Tweet.ONE_HOUR {
+                return self.getReadableCreatedAt(false)
+            } else {
+                let relative = NSDate(timeIntervalSinceNow: interval).timeAgoInWords()
+                return relative
+            }
         }
         return nil
     }

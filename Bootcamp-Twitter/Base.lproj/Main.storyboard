@@ -119,6 +119,7 @@
                                         <connections>
                                             <outlet property="profileImageView" destination="SqD-JG-KJk" id="s32-fD-R5a"/>
                                             <outlet property="screenNameLabel" destination="ki7-nq-8OQ" id="XAt-Zl-4O1"/>
+                                            <outlet property="sinceLabel" destination="5I8-qU-jX9" id="fDU-ps-yb7"/>
                                             <outlet property="tweetLabel" destination="v1m-oq-Vos" id="Et8-OV-kdK"/>
                                             <outlet property="userNameLabel" destination="hgK-9O-2Ch" id="hwJ-QR-Rkv"/>
                                             <segue destination="EVO-fb-sdb" kind="show" identifier="com.lyft.segueToTweetDetail" id="zXd-4e-qG7"/>
@@ -515,6 +516,6 @@
         <image name="retweet-action" width="25" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VP3-Zp-Pvy"/>
+        <segue reference="ob6-FV-pVO"/>
     </inferredMetricsTieBreakers>
 </document>
