@@ -155,7 +155,8 @@ class TweetDetailViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         super.prepareForSegue(segue, sender: sender)
-        if segue.identifier == "com.lyft.segueFromDetailsToEdit" {
+        if segue.identifier == "com.lyft.segueFromDetailsToEdit" ||
+            segue.identifier == "com.lyft.segueFromDetailsToEditOnReply" {
             if let navVc = segue.destinationViewController as? UINavigationController,
                 let vc = navVc.topViewController as? TweetEditViewController {
                     vc.delegate = self

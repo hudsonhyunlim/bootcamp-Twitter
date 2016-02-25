@@ -336,7 +336,11 @@
                                 <action selector="onHomeTap:" destination="pWJ-M1-KgU" id="d4D-9S-rM5"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Reply" id="vph-8a-bVR"/>
+                        <barButtonItem key="rightBarButtonItem" title="Reply" id="vph-8a-bVR">
+                            <connections>
+                                <segue destination="iEC-Bz-i2J" kind="presentation" identifier="com.lyft.segueFromDetailsToEditOnReply" id="2FC-X8-Xs0"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
@@ -516,6 +520,6 @@
         <image name="retweet-action" width="25" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ob6-FV-pVO"/>
+        <segue reference="2FC-X8-Xs0"/>
     </inferredMetricsTieBreakers>
 </document>
