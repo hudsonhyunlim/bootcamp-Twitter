@@ -8,8 +8,9 @@
 
 import UIKit
 
-protocol TweetEditViewControllerDelegate {
-    func tweetEditViewController(tweetEditViewController: TweetEditViewController, didPostTweet tweet: Tweet)
+@objc protocol TweetEditViewControllerDelegate {
+    optional func tweetEditViewController(tweetEditViewController: TweetEditViewController, didPostTweet tweet: Tweet)
+    optional func tweetEditViewController(tweetEditViewController: TweetEditViewController, inReplyTo tweet: Tweet?) -> Tweet?
 }
 
 class TweetEditViewController: UIViewController {
@@ -24,7 +25,8 @@ class TweetEditViewController: UIViewController {
     
     var delegate: TweetEditViewControllerDelegate?
     
-    var user:User?
+    var user: User?
+    var inReplyToTweet: Tweet?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +42,12 @@ class TweetEditViewController: UIViewController {
         
         self.tweetEditTextView.delegate = self
         
+        self.inReplyToTweet = self.delegate?.tweetEditViewController?(self, inReplyTo: nil)
+        if let inReplyToTweet = self.inReplyToTweet,
+           let screenName = inReplyToTweet.screenName {
+            self.tweetEditTextView.text = "@\(screenName) "
+        }
+        
         self.handleUniversalChange()
         
         self.tweetEditTextView.becomeFirstResponder()
@@ -50,11 +58,11 @@ class TweetEditViewController: UIViewController {
             if text.characters.count <= Tweet.CHARACTER_LIMIT {
                 TwitterClient.getInstance().updateStatus(
                     text,
-                    inReplyToStatusId: nil,
+                    inReplyToStatusId: inReplyToTweet?.idStr,
                     success: { (tweet: Tweet) -> Void in
                         print("tweeted successfully")
                         print(tweet.idStr)
-                        self.delegate?.tweetEditViewController(self, didPostTweet: tweet)
+                        self.delegate?.tweetEditViewController?(self, didPostTweet: tweet)
                         self.dismissViewControllerAnimated(
                             true,
                             completion: nil)

@@ -249,6 +249,7 @@
                                 <state key="normal" backgroundImage="reply-action_0"/>
                                 <connections>
                                     <action selector="onReplyTouch:" destination="pWJ-M1-KgU" eventType="touchUpInside" id="rp2-Vo-fId"/>
+                                    <segue destination="iEC-Bz-i2J" kind="presentation" identifier="com.lyft.segueFromDetailsToEdit" id="VP3-Zp-Pvy"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2OY-xT-DCb">
@@ -513,4 +514,7 @@
         <image name="reply-action_0" width="21" height="24"/>
         <image name="retweet-action" width="25" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="VP3-Zp-Pvy"/>
+    </inferredMetricsTieBreakers>
 </document>

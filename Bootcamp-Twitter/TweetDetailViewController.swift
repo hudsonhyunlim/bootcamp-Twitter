@@ -151,4 +151,22 @@ class TweetDetailViewController: UIViewController {
         let retweetImage = retweeted ? TwitterApp.retweetOn : TwitterApp.retweetOff
         self.retweetButton.setBackgroundImage(retweetImage, forState: UIControlState.Normal)
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+        if segue.identifier == "com.lyft.segueFromDetailsToEdit" {
+            if let navVc = segue.destinationViewController as? UINavigationController,
+                let vc = navVc.topViewController as? TweetEditViewController {
+                    vc.delegate = self
+            }
+        }
+    }
+}
+
+extension TweetDetailViewController: TweetEditViewControllerDelegate {
+    
+    func tweetEditViewController(tweetEditViewController: TweetEditViewController, inReplyTo tweet: Tweet?) -> Tweet? {
+        return self.tweet
+    }
+    
 }
