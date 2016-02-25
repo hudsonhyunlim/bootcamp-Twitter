@@ -62,10 +62,10 @@ public final class TwitterApp {
     public func replaceTweet(type: TweetListType, with newTweet: Tweet) -> [Tweet]? {
         let list = self.cachedTweets[type]
         
-        if var list = list {
+        if let list = list {
             for (index, tweet) in list.enumerate() {
                 if (tweet.idStr == newTweet.idStr) {
-                    list[index] = newTweet
+                    self.cachedTweets[type]![index] = newTweet
                     break
                 }
             }

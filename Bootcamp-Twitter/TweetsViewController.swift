@@ -78,6 +78,7 @@ class TweetsViewController: UIViewController {
                let indexPath = self.tweetsTableView.indexPathForCell(cell) {
                 let tweet = tweets[indexPath.row]
                 vc.tweet = tweet
+                vc.delegate = self
             }
         } else if segue.identifier == "com.lyft.segueToEdit" {
             if let navVc = segue.destinationViewController as? UINavigationController,
@@ -125,6 +126,15 @@ extension TweetsViewController: TweetEditViewControllerDelegate {
             true,
             complete: nil
         )
+    }
+    
+}
+
+extension TweetsViewController: TweetDetailViewControllerDelegate {
+    
+    func tweetDetailViewController(tweetDetailViewController: TweetDetailViewController, tweetDidChange tweet: Tweet) {
+        TwitterApp.getInstance().replaceTweet(TwitterApp.TweetListType.Home, with: tweet)
+        self.loadHomeTweets(true, complete: nil)
     }
     
 }

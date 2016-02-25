@@ -8,6 +8,12 @@
 
 import UIKit
 
+protocol TweetDetailViewControllerDelegate {
+    
+    func tweetDetailViewController(tweetDetailViewController: TweetDetailViewController, tweetDidChange tweet: Tweet)
+    
+}
+
 class TweetDetailViewController: UIViewController {
     
     @IBOutlet weak var profileImageView: UIImageView!
@@ -21,6 +27,8 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet weak var replayButton: UIButton!
     @IBOutlet weak var retweetButton: UIButton!
     @IBOutlet weak var favoriteButton: UIButton!
+    
+    var delegate: TweetDetailViewControllerDelegate?
     
     var tweet:Tweet? {
         didSet {
@@ -80,6 +88,7 @@ class TweetDetailViewController: UIViewController {
                     idStr,
                     success: { (tweet: Tweet) -> Void in
                         self.tweet?.retweeted = false
+                        self.delegate?.tweetDetailViewController(self, tweetDidChange: self.tweet!)
                     },
                     failure: { (error: NSError?) -> Void in
                         print(error)
@@ -89,6 +98,7 @@ class TweetDetailViewController: UIViewController {
                     idStr,
                     success: { (tweet: Tweet) -> Void in
                         self.tweet?.retweeted = true
+                        self.delegate?.tweetDetailViewController(self, tweetDidChange: self.tweet!)
                     },
                     failure: { (error: NSError?) -> Void in
                         print(error)
@@ -113,6 +123,7 @@ class TweetDetailViewController: UIViewController {
                     idStr,
                     success: { (tweet: Tweet) -> Void in
                         self.tweet = tweet
+                        self.delegate?.tweetDetailViewController(self, tweetDidChange: tweet)
                     },
                     failure: { (error: NSError?) -> Void in
                         print(error)
@@ -122,6 +133,7 @@ class TweetDetailViewController: UIViewController {
                     idStr,
                     success: { (tweet: Tweet) -> Void in
                         self.tweet = tweet
+                        self.delegate?.tweetDetailViewController(self, tweetDidChange: tweet)
                     },
                     failure: { (error: NSError?) -> Void in
                         print(error)
