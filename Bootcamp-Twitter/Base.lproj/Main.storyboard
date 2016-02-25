@@ -149,7 +149,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="New" id="GqG-fq-RqE">
                             <connections>
-                                <segue destination="iEC-Bz-i2J" kind="presentation" id="ob6-FV-pVO"/>
+                                <segue destination="iEC-Bz-i2J" kind="presentation" identifier="com.lyft.segueToEdit" id="ob6-FV-pVO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

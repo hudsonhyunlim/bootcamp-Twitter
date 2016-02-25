@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol TweetEditViewControllerDelegate {
+    func tweetEditViewController(tweetEditViewController: TweetEditViewController, didPostTweet tweet: Tweet)
+}
+
 class TweetEditViewController: UIViewController {
 
 
@@ -17,6 +21,8 @@ class TweetEditViewController: UIViewController {
     @IBOutlet weak var charactersLabel: UILabel!
     @IBOutlet weak var tweetEditTextView: UITextView!
     @IBOutlet weak var postButton: UIBarButtonItem!
+    
+    var delegate: TweetEditViewControllerDelegate?
     
     var user:User?
     
@@ -48,6 +54,7 @@ class TweetEditViewController: UIViewController {
                     success: { (tweet: Tweet) -> Void in
                         print("tweeted successfully")
                         print(tweet.idStr)
+                        self.delegate?.tweetEditViewController(self, didPostTweet: tweet)
                         self.dismissViewControllerAnimated(
                             true,
                             completion: nil)

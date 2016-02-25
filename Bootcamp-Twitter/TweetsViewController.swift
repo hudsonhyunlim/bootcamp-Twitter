@@ -14,6 +14,7 @@ class TweetsViewController: UIViewController {
     @IBOutlet weak var tweetsTableView: UITableView!
     
     var tweets:[Tweet]?
+    var reloadCache: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +32,7 @@ class TweetsViewController: UIViewController {
             forControlEvents: UIControlEvents.ValueChanged)
         self.tweetsTableView.insertSubview(refreshControl, atIndex: 0)
         
-        self.loadHomeTweets(nil)
+        self.loadHomeTweets(false, complete: nil)
 
     }
 
@@ -44,22 +45,27 @@ class TweetsViewController: UIViewController {
         TwitterApp.logout()
     }
     
-    private func loadHomeTweets(complete: (() -> Void)?) {
-        TwitterClient.getInstance().fetchTweets(
-            { (tweets: [Tweet]?) -> Void in
-                self.tweets = tweets
-                self.tweetsTableView.reloadData()
-                complete?()
-            },
-            failure: { (error: NSError) -> Void in
-                print(error)
-        })
+    private func loadHomeTweets(cached: Bool, complete: (() -> Void)?) {
+        if cached {
+            self.tweets = TwitterApp.getInstance().getCachedTweets(TwitterApp.TweetListType.Home)
+            self.tweetsTableView.reloadData()
+        } else {
+            TwitterApp.getInstance().fetchTweets(
+                TwitterApp.TweetListType.Home,
+                complete : { (tweets: [Tweet]?) -> Void in
+                    self.tweets = tweets
+                    self.tweetsTableView.reloadData()
+                    complete?()
+                })
+        }
     }
     
     func refreshControlAction(refreshControl: UIRefreshControl) {
-        self.loadHomeTweets({
-            refreshControl.endRefreshing()
-        })
+        self.loadHomeTweets(
+            false,
+            complete: {
+                refreshControl.endRefreshing()
+            })
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -72,6 +78,11 @@ class TweetsViewController: UIViewController {
                let indexPath = self.tweetsTableView.indexPathForCell(cell) {
                 let tweet = tweets[indexPath.row]
                 vc.tweet = tweet
+            }
+        } else if segue.identifier == "com.lyft.segueToEdit" {
+            if let navVc = segue.destinationViewController as? UINavigationController,
+               let vc = navVc.topViewController as? TweetEditViewController {
+                vc.delegate = self
             }
         }
     }
@@ -105,3 +116,15 @@ extension TweetsViewController: UITableViewDataSource {
 }
 
 extension TweetsViewController: UITableViewDelegate {}
+
+extension TweetsViewController: TweetEditViewControllerDelegate {
+    
+    func tweetEditViewController(tweetEditViewController: TweetEditViewController, didPostTweet tweet: Tweet) {
+        TwitterApp.getInstance().addNewestTweet(TwitterApp.TweetListType.Home, tweet: tweet)
+        self.loadHomeTweets(
+            true,
+            complete: nil
+        )
+    }
+    
+}

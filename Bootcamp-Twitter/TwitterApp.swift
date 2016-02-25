@@ -21,6 +21,59 @@ public final class TwitterApp {
     public static let retweetOn = UIImage(named: "retweet-action-on")
     public static let retweetOff = UIImage(named: "retweet-action")
     
+    public enum TweetListType {
+        case Home
+    }
+    private var cachedTweets: [TweetListType : [Tweet] ] = [:]
+    
+    private static var _instance: TwitterApp?
+    
+    private init() {
+        self.cachedTweets[TweetListType.Home] = [Tweet]()
+    }
+    
+    public static func getInstance() -> TwitterApp {
+        if TwitterApp._instance == nil {
+            TwitterApp._instance = TwitterApp()
+        }
+        return TwitterApp._instance!
+    }
+    
+    public func fetchTweets(type: TweetListType, complete: (([Tweet]?) -> Void)? ) {
+        TwitterClient.getInstance().fetchTweets(
+            { (tweets: [Tweet]?) -> Void in
+                self.cachedTweets[type] = tweets
+                complete?(tweets)
+            },
+            failure: { (error: NSError) -> Void in
+                print(error)
+        })
+    }
+    
+    public func getCachedTweets(type: TweetListType) -> [Tweet]? {
+        return self.cachedTweets[type]
+    }
+    
+    public func addNewestTweet(type: TweetListType, tweet: Tweet) -> [Tweet]? {
+        self.cachedTweets[type]?.insert(tweet, atIndex: 0)
+        return self.cachedTweets[type]
+    }
+    
+    public func replaceTweet(type: TweetListType, with newTweet: Tweet) -> [Tweet]? {
+        let list = self.cachedTweets[type]
+        
+        if var list = list {
+            for (index, tweet) in list.enumerate() {
+                if (tweet.idStr == newTweet.idStr) {
+                    list[index] = newTweet
+                    break
+                }
+            }
+        }
+        
+        return list
+    }
+    
     public static var currentUser: User? {
         get {
             if TwitterApp._currentUser == nil {
