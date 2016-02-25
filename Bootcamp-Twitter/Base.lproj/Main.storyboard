@@ -38,11 +38,12 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <segue destination="Lij-d3-WDc" kind="presentation" identifier="com.lyft.segueToHome" modalTransitionStyle="crossDissolve" id="aJZ-l2-cEa"/>
+                        <segue destination="b0p-Wu-f3X" kind="show" identifier="com.lyft.segueToHome" id="kJu-pw-jvb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="207" y="-390"/>
         </scene>
         <!--Tweets View Controller-->
         <scene sceneID="mWm-Tz-quK">
@@ -456,10 +457,80 @@
             </objects>
             <point key="canvasLocation" x="1720" y="1038"/>
         </scene>
+        <!--Hamburger View Controller-->
+        <scene sceneID="3i3-lM-enc">
+            <objects>
+                <viewController storyboardIdentifier="com.lyft.HamburgerViewController" id="b0p-Wu-f3X" customClass="HamburgerViewController" customModule="Bootcamp_Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9pd-f4-hFq"/>
+                        <viewControllerLayoutGuide type="bottom" id="Kj5-F1-BR5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="16g-H7-eNR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ejy-a2-q4r" userLabel="Menu View">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BgT-Q6-i5Z" userLabel="Content View">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Ejy-a2-q4r" secondAttribute="trailing" id="5OQ-4d-EMx"/>
+                            <constraint firstItem="Ejy-a2-q4r" firstAttribute="top" secondItem="9pd-f4-hFq" secondAttribute="bottom" id="9Ez-Kg-ffm"/>
+                            <constraint firstItem="Kj5-F1-BR5" firstAttribute="top" secondItem="BgT-Q6-i5Z" secondAttribute="bottom" id="Be2-8b-RXF"/>
+                            <constraint firstItem="Ejy-a2-q4r" firstAttribute="top" secondItem="16g-H7-eNR" secondAttribute="top" id="Bm0-dj-qo4"/>
+                            <constraint firstItem="Kj5-F1-BR5" firstAttribute="top" secondItem="Ejy-a2-q4r" secondAttribute="bottom" id="Izv-ki-Wjh"/>
+                            <constraint firstItem="BgT-Q6-i5Z" firstAttribute="top" secondItem="9pd-f4-hFq" secondAttribute="bottom" id="J4K-DP-owS"/>
+                            <constraint firstItem="Ejy-a2-q4r" firstAttribute="leading" secondItem="16g-H7-eNR" secondAttribute="leading" id="Jhy-SR-fVV"/>
+                            <constraint firstItem="BgT-Q6-i5Z" firstAttribute="leading" secondItem="16g-H7-eNR" secondAttribute="leading" id="d1N-Dd-fyd"/>
+                            <constraint firstItem="BgT-Q6-i5Z" firstAttribute="width" secondItem="16g-H7-eNR" secondAttribute="width" id="i0A-gU-JjV"/>
+                            <constraint firstItem="BgT-Q6-i5Z" firstAttribute="top" secondItem="9pd-f4-hFq" secondAttribute="bottom" id="ivk-ii-jiv"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="J4K-DP-owS"/>
+                                <exclude reference="9Ez-Kg-ffm"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="contentView" destination="BgT-Q6-i5Z" id="ayZ-Bn-gaL"/>
+                        <outlet property="menuView" destination="Ejy-a2-q4r" id="lz9-Tw-wTE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Maf-QZ-MQd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="808" y="-390"/>
+        </scene>
+        <!--Menu View Controller-->
+        <scene sceneID="aBG-8f-lL0">
+            <objects>
+                <viewController storyboardIdentifier="com.lyft.MenuViewController" id="6cI-Xg-Ndr" customClass="MenuViewController" customModule="Bootcamp_Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LXT-R2-Pbj"/>
+                        <viewControllerLayoutGuide type="bottom" id="OxT-7x-xf2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xLk-Zz-GuX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X9M-bQ-d6p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1289" y="-390"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="fR4-3I-UfW">
             <objects>
-                <navigationController storyboardIdentifier="com.lyft.NavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Lij-d3-WDc" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="com.lyft.TweetsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Lij-d3-WDc" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yuu-7z-zkj">
@@ -520,6 +591,6 @@
         <image name="retweet-action" width="25" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2FC-X8-Xs0"/>
+        <segue reference="ob6-FV-pVO"/>
     </inferredMetricsTieBreakers>
 </document>

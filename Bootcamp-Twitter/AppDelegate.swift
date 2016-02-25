@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Override point for customization after application launch.
         if TwitterApp.currentUser != nil {
-            let vc = storyboard.instantiateViewControllerWithIdentifier("com.lyft.NavigationController")
+            let vc = storyboard.instantiateViewControllerWithIdentifier("com.lyft.HamburgerViewController")
             self.window?.rootViewController = vc
         }
         
