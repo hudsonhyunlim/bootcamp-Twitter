@@ -58,6 +58,7 @@ class TweetDetailViewController: UIViewController {
             self.tweetTextLabel.text = tweet.text
             self.retweetCountLabel.text = String(tweet.retweetCount)
             self.favoritesCountLabel.text = String(tweet.favoritesCount)
+            self.createdAtLabel.text = tweet.getReadableCreatedAt()
             
             if let favorited = tweet.favorited {
                 self.setFavoriteButton(favorited)

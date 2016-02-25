@@ -11,6 +11,7 @@ import Foundation
 public class Tweet: NSObject {
     
     public static let CHARACTER_LIMIT: Int = 140
+    public static var dateFormatter = NSDateFormatter()
     
     var idStr: String?
     var text: String?
@@ -31,10 +32,9 @@ public class Tweet: NSObject {
         self.favoritesCount = dictionary["favorite_count"] as? Int ?? 0
         
         if let createdAt = dictionary["created_at"] as? String {
-            let formatter = NSDateFormatter()
-            formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
+            Tweet.dateFormatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
             
-            self.createdAt = formatter.dateFromString(createdAt)
+            self.createdAt = Tweet.dateFormatter.dateFromString(createdAt)
         }
         
         if let urlString = dictionary.valueForKeyPath("user.profile_image_url_https") as? String {
@@ -47,6 +47,14 @@ public class Tweet: NSObject {
         self.retweeted = dictionary["retweeted"] as? Bool
         self.favorited = dictionary["favorited"] as? Bool
         
+    }
+    
+    func getReadableCreatedAt() -> String? {
+        if let createdAt = self.createdAt {
+            Tweet.dateFormatter.dateFormat = "MM/DD/YY, h:mm a"
+            return Tweet.dateFormatter.stringFromDate(createdAt)
+        }
+        return nil
     }
     
 }
