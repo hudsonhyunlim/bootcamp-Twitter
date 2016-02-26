@@ -14,10 +14,12 @@ class TweetsViewController: UIViewController {
     @IBOutlet weak var tweetsTableView: UITableView!
     
     var tweets:[Tweet]?
+    var tweetListType:TwitterApp.TweetListType?
     var reloadCache: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view, typically from a nib.
         
         self.tweetsTableView.delegate = self
@@ -32,7 +34,7 @@ class TweetsViewController: UIViewController {
             forControlEvents: UIControlEvents.ValueChanged)
         self.tweetsTableView.insertSubview(refreshControl, atIndex: 0)
         
-        self.loadHomeTweets(false, complete: nil)
+        self.loadTweets(false, complete: nil)
 
     }
 
@@ -45,23 +47,25 @@ class TweetsViewController: UIViewController {
         TwitterApp.logout()
     }
     
-    private func loadHomeTweets(cached: Bool, complete: (() -> Void)?) {
-        if cached {
-            self.tweets = TwitterApp.getInstance().getCachedTweets(TwitterApp.TweetListType.Home)
-            self.tweetsTableView.reloadData()
-        } else {
-            TwitterApp.getInstance().fetchTweets(
-                TwitterApp.TweetListType.Home,
-                complete : { (tweets: [Tweet]?) -> Void in
-                    self.tweets = tweets
-                    self.tweetsTableView.reloadData()
-                    complete?()
-                })
+    private func loadTweets(cached: Bool, complete: (() -> Void)?) {
+        if let tweetListType = self.tweetListType {
+            if cached {
+                self.tweets = TwitterApp.getInstance().getCachedTweets(tweetListType)
+                self.tweetsTableView.reloadData()
+            } else {
+                TwitterApp.getInstance().fetchTweets(
+                    tweetListType,
+                    complete : { (tweets: [Tweet]?) -> Void in
+                        self.tweets = tweets
+                        self.tweetsTableView.reloadData()
+                        complete?()
+                    })
+            }
         }
     }
     
     func refreshControlAction(refreshControl: UIRefreshControl) {
-        self.loadHomeTweets(
+        self.loadTweets(
             false,
             complete: {
                 refreshControl.endRefreshing()
@@ -121,11 +125,13 @@ extension TweetsViewController: UITableViewDelegate {}
 extension TweetsViewController: TweetEditViewControllerDelegate {
     
     func tweetEditViewController(tweetEditViewController: TweetEditViewController, didPostTweet tweet: Tweet) {
-        TwitterApp.getInstance().addNewestTweet(TwitterApp.TweetListType.Home, tweet: tweet)
-        self.loadHomeTweets(
-            true,
-            complete: nil
-        )
+        if let tweetListType = self.tweetListType {
+            TwitterApp.getInstance().addNewestTweet(tweetListType, tweet: tweet)
+            self.loadTweets(
+                true,
+                complete: nil
+            )
+        }
     }
     
 }
@@ -133,8 +139,10 @@ extension TweetsViewController: TweetEditViewControllerDelegate {
 extension TweetsViewController: TweetDetailViewControllerDelegate {
     
     func tweetDetailViewController(tweetDetailViewController: TweetDetailViewController, tweetDidChange tweet: Tweet) {
-        TwitterApp.getInstance().replaceTweet(TwitterApp.TweetListType.Home, with: tweet)
-        self.loadHomeTweets(true, complete: nil)
+        if let tweetListType = self.tweetListType {
+            TwitterApp.getInstance().replaceTweet(tweetListType, with: tweet)
+            self.loadTweets(true, complete: nil)
+        }
     }
     
 }

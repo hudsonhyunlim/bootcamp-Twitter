@@ -40,7 +40,9 @@ public final class TwitterApp {
     
     public enum TweetListType {
         case Home
+        case Mentions
     }
+    
     private var cachedTweets: [TweetListType : [Tweet] ] = [:]
     
     private static var _instance: TwitterApp?
@@ -58,8 +60,17 @@ public final class TwitterApp {
     }
     
     public func fetchTweets(type: TweetListType, complete: (([Tweet]?) -> Void)? ) {
+        var timeline = ""
+        switch type {
+        case .Home:
+            timeline = TwitterClient.HOME_TIME_LINE
+        case .Mentions:
+            timeline = TwitterClient.MENTIONS_TIME_LINE
+        }
+        
         TwitterClient.getInstance().fetchTweets(
-            { (tweets: [Tweet]?) -> Void in
+            timeline,
+            success: { (tweets: [Tweet]?) -> Void in
                 self.cachedTweets[type] = tweets
                 complete?(tweets)
             },

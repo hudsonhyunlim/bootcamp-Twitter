@@ -13,8 +13,9 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var menuTableView: UITableView!
     
     private enum ViewControllerNames: String {
-        case Home = "com.lyft.TweetsNavigationController"
+        case Tweets = "com.lyft.TweetsNavigationController"
         case Profile = "com.lyft.UserProfileNavigationController"
+        case Mentions = "foobar"
     }
     
     private var viewControllers: [ViewControllerNames: UIViewController] = [:]
@@ -32,10 +33,25 @@ class MenuViewController: UIViewController {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        viewControllers[ViewControllerNames.Home] = storyboard.instantiateViewControllerWithIdentifier(ViewControllerNames.Home.rawValue)
-        viewControllers[ViewControllerNames.Profile] = storyboard.instantiateViewControllerWithIdentifier(ViewControllerNames.Profile.rawValue)
+        let homeNavigationController = storyboard.instantiateViewControllerWithIdentifier(ViewControllerNames.Tweets.rawValue)
+        let profileNavigationController = storyboard.instantiateViewControllerWithIdentifier(ViewControllerNames.Profile.rawValue)
+        let mentionsNavigationController = storyboard.instantiateViewControllerWithIdentifier(ViewControllerNames.Tweets.rawValue)
         
-        hamburgerViewController?.contentViewController = viewControllers[ViewControllerNames.Home]
+        if let homeNavigationController = homeNavigationController as? UINavigationController,
+           let homeController = homeNavigationController.topViewController as? TweetsViewController {
+            homeController.tweetListType = TwitterApp.TweetListType.Home
+        }
+        
+        if let mentionsNavigationController = mentionsNavigationController as? UINavigationController,
+           let mentionsController = mentionsNavigationController.topViewController as? TweetsViewController {
+            mentionsController.tweetListType = TwitterApp.TweetListType.Mentions
+        }
+        
+        viewControllers[ViewControllerNames.Tweets] = homeNavigationController
+        viewControllers[ViewControllerNames.Profile] = profileNavigationController
+        viewControllers[ViewControllerNames.Mentions] = mentionsNavigationController
+        
+        hamburgerViewController?.contentViewController = homeNavigationController
         
         self.menuTableView.delegate = self
         self.menuTableView.dataSource = self
@@ -67,9 +83,11 @@ extension MenuViewController: UITableViewDelegate {
         let index = indexPath.row
         switch index {
         case 0:
-            self.hamburgerViewController?.contentViewController = viewControllers[ViewControllerNames.Home]
+            self.hamburgerViewController?.contentViewController = viewControllers[ViewControllerNames.Tweets]
         case 1:
             self.hamburgerViewController?.contentViewController = viewControllers[ViewControllerNames.Profile]
+        case 2:
+            self.hamburgerViewController?.contentViewController = viewControllers[ViewControllerNames.Mentions]
         default:
             break
         }

@@ -14,6 +14,7 @@ public class TwitterClient {
     static let TWITTER_BASE = "https://api.twitter.com"
     static let VERIFY_CREDENTIALS = "1.1/account/verify_credentials.json"
     static let HOME_TIME_LINE = "1.1/statuses/home_timeline.json"
+    static let MENTIONS_TIME_LINE = "1.1/statuses/mentions_timeline.json"
     static let STATUSES_UPDATE = "1.1/statuses/update.json"
     static let FAVORITE_CREATE = "1.1/favorites/create.json"
     static let FAVORITE_DESTROY = "1.1/favorites/destroy.json"
@@ -110,14 +111,14 @@ public class TwitterClient {
 
     }
     
-    func fetchTweets(success: ([Tweet]?) -> Void, failure: (NSError) -> Void) {
+    func fetchTweets(timeLineUrl: String, success: ([Tweet]?) -> Void, failure: (NSError) -> Void) {
         guard let session = self.session else {
             success(nil)
             return
         }
         
         session.GET(
-            TwitterClient.HOME_TIME_LINE,
+            timeLineUrl,
             parameters: nil,
             progress: nil,
             success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
