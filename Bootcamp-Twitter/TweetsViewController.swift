@@ -89,6 +89,13 @@ class TweetsViewController: UIViewController {
                let vc = navVc.topViewController as? TweetEditViewController {
                 vc.delegate = self
             }
+        } else if segue.identifier == "com.lyft.segueTweetsToUser" {
+            if let user = sender as? User,
+               let navVc = segue.destinationViewController as? UINavigationController,
+               let vc = navVc.topViewController as? UserProfileViewController {
+                vc.user = user
+                vc.dismissable = true
+            }
         }
     }
 
@@ -101,6 +108,7 @@ extension TweetsViewController: UITableViewDataSource {
         
         if let tweets = self.tweets {
             cell.tweet = tweets[indexPath.row]
+            cell.delegate = self
         }
         
         // hack to remove insets in separators
@@ -142,6 +150,16 @@ extension TweetsViewController: TweetDetailViewControllerDelegate {
         if let tweetListType = self.tweetListType {
             TwitterApp.getInstance().replaceTweet(tweetListType, with: tweet)
             self.loadTweets(true, complete: nil)
+        }
+    }
+    
+}
+
+extension TweetsViewController: TweetCellDelegate {
+    
+    func tweetCell(tweetCell: TweetCell, receivedUserViewRequest user: User?) {
+        if let user = user {
+            self.performSegueWithIdentifier("com.lyft.segueTweetsToUser", sender: user)
         }
     }
     

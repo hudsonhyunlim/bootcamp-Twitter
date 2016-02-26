@@ -70,10 +70,14 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SqD-JG-KJk">
                                                     <rect key="frame" x="8" y="8" width="48" height="48"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="48" id="Ab3-e6-vWb"/>
                                                         <constraint firstAttribute="height" constant="48" id="WbL-kq-LDZ"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="2eb-Ls-OEi" appends="YES" id="pTD-jI-CXK"/>
+                                                    </connections>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgK-9O-2Ch">
                                                     <rect key="frame" x="60" y="8" width="85.5" height="19.5"/>
@@ -158,9 +162,11 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="tweetsTableView" destination="5cT-t3-BUq" id="1PL-cB-EBJ"/>
+                        <segue destination="8sZ-al-Imw" kind="presentation" identifier="com.lyft.segueTweetsToUser" id="jcJ-rs-rvJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3bh-Pk-qJG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="2eb-Ls-OEi"/>
             </objects>
             <point key="canvasLocation" x="1289" y="260"/>
         </scene>
@@ -455,7 +461,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RXS-o9-jxr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1720" y="1038"/>
+            <point key="canvasLocation" x="2218" y="1038"/>
         </scene>
         <!--Hamburger View Controller-->
         <scene sceneID="3i3-lM-enc">
@@ -615,7 +621,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sc4-bv-ozC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1289" y="1038"/>
+            <point key="canvasLocation" x="1769" y="1038"/>
         </scene>
         <!--User Profile View Controller-->
         <scene sceneID="H96-Fa-ymw">
@@ -822,13 +828,21 @@
                             <constraint firstAttribute="trailing" secondItem="TWf-4s-OOu" secondAttribute="trailing" id="ug5-UV-HVD"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="FcT-vP-yfb"/>
+                    <navigationItem key="navigationItem" id="FcT-vP-yfb">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="mL8-Tp-kwA">
+                            <connections>
+                                <action selector="onCloseTap:" destination="Gfl-kr-rmb" id="zWe-6d-7dG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="backgroundImageView" destination="iy7-zY-iet" id="XOT-jr-T5g"/>
+                        <outlet property="closeBarButton" destination="mL8-Tp-kwA" id="vcu-f9-pVS"/>
                         <outlet property="followerCountLabel" destination="FRT-Pf-teB" id="3Z5-RA-w2i"/>
                         <outlet property="followingCountLabel" destination="aQG-SZ-qWM" id="PiM-sY-so0"/>
                         <outlet property="locationLabel" destination="Sd7-0f-Joj" id="e0U-6g-6AD"/>
+                        <outlet property="profileHolderView" destination="5wU-5J-dLt" id="Qba-C4-bn3"/>
                         <outlet property="profileImageView" destination="WCQ-Ou-Io9" id="VsD-bu-8A3"/>
                         <outlet property="screenNameLabel" destination="LK0-Yf-mVV" id="s2q-6u-dwk"/>
                         <outlet property="tweetCountLabel" destination="aoA-3P-4yp" id="fhj-Ld-xuj"/>
@@ -859,10 +873,10 @@
             </objects>
             <point key="canvasLocation" x="1769" y="260"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--User Profile Navigation Controller-->
         <scene sceneID="T2A-Ab-0Lb">
             <objects>
-                <navigationController storyboardIdentifier="com.lyft.UserProfileNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="8sZ-al-Imw" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="com.lyft.UserProfileNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="8sZ-al-Imw" userLabel="User Profile Navigation Controller" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="H2k-w7-SKn">
@@ -877,23 +891,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zeq-UE-phk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1289" y="1723"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="ZU1-Ie-keH">
-            <objects>
-                <viewController id="enr-RE-Ahf" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="mYd-n3-6e0"/>
-                        <viewControllerLayoutGuide type="bottom" id="ivL-Vt-jiD"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Ldf-uT-Zbf">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="J5x-sg-ZCl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
         </scene>
     </scenes>
     <resources>

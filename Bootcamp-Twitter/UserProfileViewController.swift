@@ -19,6 +19,8 @@ class UserProfileViewController: UIViewController {
     @IBOutlet weak var followingCountLabel: UILabel!
     @IBOutlet weak var followerCountLabel: UILabel!
     @IBOutlet weak var tweetCountLabel: UILabel!
+    @IBOutlet weak var profileHolderView: UIView!
+    @IBOutlet weak var closeBarButton: UIBarButtonItem!
     
     var user:User? {
         didSet {
@@ -41,8 +43,24 @@ class UserProfileViewController: UIViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    var dismissable:Bool = false {
+        didSet {
+            self.view.layoutIfNeeded()
+            self.closeBarButton.enabled = self.dismissable
+            self.closeBarButton.tintColor = self.dismissable ? nil : UIColor.clearColor()
+        }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.profileImageView.layer.cornerRadius = 5
+        self.profileImageView.clipsToBounds = true
+        self.profileHolderView.layer.cornerRadius = 5
+        self.profileHolderView.clipsToBounds = true
+    }
+    
+    @IBAction func onCloseTap(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }

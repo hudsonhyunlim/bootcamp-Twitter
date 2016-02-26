@@ -26,6 +26,7 @@ public class Tweet: NSObject {
     var inReplyToScreenName: String?
     var retweeted: Bool?
     var favorited: Bool?
+    var user: User?
     
     init (dictionary: NSDictionary) {
         self.idStr = dictionary["id_str"] as? String
@@ -48,6 +49,10 @@ public class Tweet: NSObject {
         self.inReplyToScreenName = dictionary["in_reply_to_screen_name"] as? String
         self.retweeted = dictionary["retweeted"] as? Bool
         self.favorited = dictionary["favorited"] as? Bool
+        
+        if let userDict = dictionary["user"] as? NSDictionary {
+            self.user = User(dictionary: userDict)
+        }
         
     }
     

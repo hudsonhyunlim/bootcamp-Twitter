@@ -9,6 +9,10 @@
 import UIKit
 import AFNetworking
 
+@objc protocol TweetCellDelegate {
+    optional func tweetCell(tweetCell: TweetCell, receivedUserViewRequest user: User?)
+}
+
 class TweetCell: UITableViewCell {
     
     @IBOutlet weak var profileImageView: UIImageView!
@@ -16,6 +20,8 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var screenNameLabel: UILabel!
     @IBOutlet weak var tweetLabel: UILabel!
     @IBOutlet weak var sinceLabel: UILabel!
+    
+    var delegate: TweetCellDelegate?
     
     var tweet: Tweet? {
         didSet {
@@ -43,6 +49,15 @@ class TweetCell: UITableViewCell {
         
         self.profileImageView.layer.cornerRadius = 5
         self.profileImageView.clipsToBounds = true
+        let profileTap = UITapGestureRecognizer(target: self, action: "onProfileImageTap:")
+        self.addGestureRecognizer(profileTap)
     }
-
+    
+    func onProfileImageTap(sender: UITapGestureRecognizer) {
+        let state = sender.state
+        if state == UIGestureRecognizerState.Ended {
+            self.delegate?.tweetCell?(self, receivedUserViewRequest: self.tweet?.user)
+        }
+    }
+    
 }

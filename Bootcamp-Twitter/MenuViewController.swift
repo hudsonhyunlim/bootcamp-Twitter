@@ -87,7 +87,10 @@ extension MenuViewController: UITableViewDelegate {
         case 1:
             if let profileNavigationController = viewControllers[ViewControllerNames.Profile] as? UINavigationController,
                 let profileController = profileNavigationController.topViewController as? UserProfileViewController {
+                    
                 profileController.user = TwitterApp.currentUser
+                profileController.dismissable = false
+                    
                 self.hamburgerViewController?.contentViewController = profileNavigationController
             }
         case 2:
