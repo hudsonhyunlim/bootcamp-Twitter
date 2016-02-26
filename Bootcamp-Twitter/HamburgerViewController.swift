@@ -19,18 +19,34 @@ class HamburgerViewController: UIViewController {
     var minX:CGFloat = 0
     
     var menuViewController: MenuViewController? {
-        didSet {
+        didSet (oldMenuViewController) {
             if let menuViewController = self.menuViewController {
                 self.view.layoutIfNeeded()
+                
+                if oldMenuViewController != nil {
+                    oldMenuViewController?.willMoveToParentViewController(nil)
+                    oldMenuViewController?.view.removeFromSuperview()
+                    oldMenuViewController?.didMoveToParentViewController(nil)
+                }
+                
+                menuViewController.willMoveToParentViewController(self)
                 self.menuView.addSubview(menuViewController.view)
+                menuViewController.didMoveToParentViewController(self)
             }
         }
     }
     
     var contentViewController: UIViewController? {
-        didSet {
+        didSet (oldContentViewController) {
             if let contentViewController = self.contentViewController {
                 self.view.layoutIfNeeded()
+                
+                if oldContentViewController != nil {
+                    oldContentViewController?.willMoveToParentViewController(nil)
+                    oldContentViewController?.view.removeFromSuperview()
+                    oldContentViewController?.didMoveToParentViewController(nil)
+                }
+                
                 contentViewController.willMoveToParentViewController(self)
                 self.contentView.addSubview(contentViewController.view)
                 contentViewController.didMoveToParentViewController(self)
