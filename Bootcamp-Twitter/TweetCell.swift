@@ -49,8 +49,9 @@ class TweetCell: UITableViewCell {
         
         self.profileImageView.layer.cornerRadius = 5
         self.profileImageView.clipsToBounds = true
+        self.profileImageView.userInteractionEnabled = true
         let profileTap = UITapGestureRecognizer(target: self, action: "onProfileImageTap:")
-        self.addGestureRecognizer(profileTap)
+        self.profileImageView.addGestureRecognizer(profileTap)
     }
     
     func onProfileImageTap(sender: UITapGestureRecognizer) {

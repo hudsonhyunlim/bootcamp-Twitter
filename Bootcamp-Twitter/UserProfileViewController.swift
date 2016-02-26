@@ -58,6 +58,7 @@ class UserProfileViewController: UIViewController {
         self.profileImageView.clipsToBounds = true
         self.profileHolderView.layer.cornerRadius = 5
         self.profileHolderView.clipsToBounds = true
+        self.backgroundImageView.clipsToBounds = true
     }
     
     @IBAction func onCloseTap(sender: UIBarButtonItem) {
