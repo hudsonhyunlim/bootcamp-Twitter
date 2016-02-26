@@ -15,6 +15,8 @@ class HamburgerViewController: UIViewController {
     
     @IBOutlet weak var contentViewLeading: NSLayoutConstraint!
     var originalContentCenter:CGPoint?
+    var maxX:CGFloat = 0
+    var minX:CGFloat = 0
     
     var menuViewController: MenuViewController? {
         didSet {
@@ -47,12 +49,16 @@ class HamburgerViewController: UIViewController {
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.maxX = (self.contentView.bounds.width * 1.5) - 50
+        self.minX = self.contentView.bounds.width / 2
+    }
+    
     @IBAction func onContentPan(sender: UIPanGestureRecognizer) {
         let state = sender.state
         let translate = sender.translationInView(self.view)
         let velocity = sender.velocityInView(self.view)
-        let maxX = (self.contentView.bounds.width * 1.5) - 50
-        let minX = self.contentView.bounds.width / 2
         
         switch (state) {
         case UIGestureRecognizerState.Began:
@@ -67,27 +73,32 @@ class HamburgerViewController: UIViewController {
                 }
             }
         case UIGestureRecognizerState.Ended:
-            UIView.animateWithDuration(
-                0.2,
-                delay: 0.0,
-                options: [],
-                animations: { () -> Void in
-                    if let originalContentCenter = self.originalContentCenter {
-                        if velocity.x > 0 {
-                            self.contentView.center = CGPoint(
-                                x: maxX,
-                                y: originalContentCenter.y)
-                        } else {
-                            self.contentView.center = CGPoint(
-                                x: minX,
-                                y: originalContentCenter.y)
-                        }
-                        self.view.layoutIfNeeded()
-                    }
-                },
-                completion: nil)
+            self.moveContentDrawer(velocity.x > 0)
         default:
             break
         }
     }
+    
+    internal func moveContentDrawer(open:Bool) {
+        UIView.animateWithDuration(
+            0.2,
+            delay: 0.0,
+            options: [],
+            animations: { () -> Void in
+                if let originalContentCenter = self.originalContentCenter {
+                    if open {
+                        self.contentView.center = CGPoint(
+                            x: self.maxX,
+                            y: originalContentCenter.y)
+                    } else {
+                        self.contentView.center = CGPoint(
+                            x: self.minX,
+                            y: originalContentCenter.y)
+                    }
+                    self.view.layoutIfNeeded()
+                }
+            },
+            completion: nil)
+    }
+
 }
