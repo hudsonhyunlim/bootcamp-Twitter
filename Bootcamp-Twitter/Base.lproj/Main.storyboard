@@ -617,6 +617,34 @@
             </objects>
             <point key="canvasLocation" x="1289" y="1038"/>
         </scene>
+        <!--User Profile View Controller-->
+        <scene sceneID="H96-Fa-ymw">
+            <objects>
+                <viewController id="Gfl-kr-rmb" customClass="UserProfileViewController" customModule="Bootcamp_Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YYu-di-QnO"/>
+                        <viewControllerLayoutGuide type="bottom" id="AKW-qT-tfI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xcr-Ak-D7m">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WCQ-Ou-Io9">
+                                <rect key="frame" x="20" y="86" width="96" height="96"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="FcT-vP-yfb"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="profileImageView" destination="WCQ-Ou-Io9" id="VsD-bu-8A3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8VQ-BP-59E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1720" y="1723"/>
+        </scene>
         <!--Tweet Detail Navigation Controller-->
         <scene sceneID="peM-Kz-51d">
             <objects>
@@ -635,6 +663,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QMl-3v-ph7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1769" y="260"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="T2A-Ab-0Lb">
+            <objects>
+                <navigationController storyboardIdentifier="com.lyft.UserProfileNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="8sZ-al-Imw" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="H2k-w7-SKn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Gfl-kr-rmb" kind="relationship" relationship="rootViewController" id="Hco-Jr-1i6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zeq-UE-phk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1289" y="1723"/>
         </scene>
     </scenes>
     <resources>

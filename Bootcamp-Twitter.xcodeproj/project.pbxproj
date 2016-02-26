@@ -12,6 +12,7 @@
 		711ED03E1C7FBF800054641F /* HamburgerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711ED03D1C7FBF800054641F /* HamburgerViewController.swift */; };
 		711ED0401C7FBFD50054641F /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711ED03F1C7FBFD50054641F /* MenuViewController.swift */; };
 		711ED0421C7FE59E0054641F /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711ED0411C7FE59E0054641F /* MenuCell.swift */; };
+		711ED0441C7FED9E0054641F /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711ED0431C7FED9E0054641F /* UserProfileViewController.swift */; };
 		713620E91C7BE69700DF07AD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713620E81C7BE69700DF07AD /* LoginViewController.swift */; };
 		713620EC1C7BE81500DF07AD /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713620EB1C7BE81500DF07AD /* TwitterClient.swift */; };
 		713620EF1C7C2A0E00DF07AD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713620EE1C7C2A0E00DF07AD /* User.swift */; };
@@ -33,6 +34,7 @@
 		711ED03D1C7FBF800054641F /* HamburgerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HamburgerViewController.swift; sourceTree = "<group>"; };
 		711ED03F1C7FBFD50054641F /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		711ED0411C7FE59E0054641F /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
+		711ED0431C7FED9E0054641F /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		713620E81C7BE69700DF07AD /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		713620EB1C7BE81500DF07AD /* TwitterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
 		713620EE1C7C2A0E00DF07AD /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				716978541C7D541B00EFBB94 /* TweetDetailViewController.swift */,
 				711ED03D1C7FBF800054641F /* HamburgerViewController.swift */,
 				711ED03F1C7FBFD50054641F /* MenuViewController.swift */,
+				711ED0431C7FED9E0054641F /* UserProfileViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				713620EF1C7C2A0E00DF07AD /* User.swift in Sources */,
 				711ED0401C7FBFD50054641F /* MenuViewController.swift in Sources */,
 				71C67A691C7BE27C00ABD953 /* AppDelegate.swift in Sources */,
+				711ED0441C7FED9E0054641F /* UserProfileViewController.swift in Sources */,
 				7116E9621C7CF06700B4E024 /* TwitterApp.swift in Sources */,
 				711ED03E1C7FBF800054641F /* HamburgerViewController.swift in Sources */,
 				711ED0421C7FE59E0054641F /* MenuCell.swift in Sources */,

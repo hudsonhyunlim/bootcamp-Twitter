@@ -14,6 +14,7 @@ class MenuViewController: UIViewController {
     
     private enum ViewControllerNames: String {
         case Home = "com.lyft.TweetsNavigationController"
+        case Profile = "com.lyft.UserProfileNavigationController"
     }
     
     private var viewControllers: [ViewControllerNames: UIViewController] = [:]
@@ -32,6 +33,7 @@ class MenuViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         viewControllers[ViewControllerNames.Home] = storyboard.instantiateViewControllerWithIdentifier(ViewControllerNames.Home.rawValue)
+        viewControllers[ViewControllerNames.Profile] = storyboard.instantiateViewControllerWithIdentifier(ViewControllerNames.Profile.rawValue)
         
         hamburgerViewController?.contentViewController = viewControllers[ViewControllerNames.Home]
         
@@ -59,4 +61,19 @@ extension MenuViewController: UITableViewDataSource {
     }
 }
 
-extension MenuViewController: UITableViewDelegate {}
+extension MenuViewController: UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let index = indexPath.row
+        switch index {
+        case 0:
+            self.hamburgerViewController?.contentViewController = viewControllers[ViewControllerNames.Home]
+        case 1:
+            self.hamburgerViewController?.contentViewController = viewControllers[ViewControllerNames.Profile]
+        default:
+            break
+        }
+        self.hamburgerViewController?.moveContentDrawer(false)
+    }
+    
+}
