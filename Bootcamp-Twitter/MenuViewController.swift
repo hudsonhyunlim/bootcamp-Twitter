@@ -85,7 +85,11 @@ extension MenuViewController: UITableViewDelegate {
         case 0:
             self.hamburgerViewController?.contentViewController = viewControllers[ViewControllerNames.Tweets]
         case 1:
-            self.hamburgerViewController?.contentViewController = viewControllers[ViewControllerNames.Profile]
+            if let profileNavigationController = viewControllers[ViewControllerNames.Profile] as? UINavigationController,
+                let profileController = profileNavigationController.topViewController as? UserProfileViewController {
+                profileController.user = TwitterApp.currentUser
+                self.hamburgerViewController?.contentViewController = profileNavigationController
+            }
         case 2:
             self.hamburgerViewController?.contentViewController = viewControllers[ViewControllerNames.Mentions]
         default:
