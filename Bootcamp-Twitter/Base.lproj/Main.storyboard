@@ -548,20 +548,39 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu Item here" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zec-vZ-o6T">
-                                                    <rect key="frame" x="8" y="8" width="119.5" height="93.5"/>
+                                                    <rect key="frame" x="40" y="8" width="119.5" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t65-Bf-EXc">
+                                                    <rect key="frame" x="8" y="8" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="24" id="IaP-kg-F5G"/>
+                                                        <constraint firstAttribute="height" constant="24" id="UcT-lt-pfU"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="Zec-vZ-o6T" firstAttribute="centerY" secondItem="YLf-d2-R72" secondAttribute="centerY" id="8a7-WT-5dp"/>
                                                 <constraint firstItem="Zec-vZ-o6T" firstAttribute="leading" secondItem="YLf-d2-R72" secondAttribute="leading" constant="8" id="Ebn-6c-fwV"/>
+                                                <constraint firstItem="t65-Bf-EXc" firstAttribute="centerY" secondItem="YLf-d2-R72" secondAttribute="centerY" id="QdR-u1-NYb"/>
                                                 <constraint firstItem="Zec-vZ-o6T" firstAttribute="top" secondItem="YLf-d2-R72" secondAttribute="top" constant="8" id="Rmu-cw-kjM"/>
+                                                <constraint firstItem="t65-Bf-EXc" firstAttribute="leading" secondItem="YLf-d2-R72" secondAttribute="leading" constant="8" id="WLo-sz-rsA"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Zec-vZ-o6T" secondAttribute="trailing" constant="8" id="f0p-yG-Tdk"/>
+                                                <constraint firstItem="Zec-vZ-o6T" firstAttribute="leading" secondItem="t65-Bf-EXc" secondAttribute="trailing" constant="8" id="inc-rw-VH4"/>
+                                                <constraint firstAttribute="bottom" secondItem="t65-Bf-EXc" secondAttribute="bottom" constant="8" id="nbX-j4-QlE"/>
                                                 <constraint firstAttribute="bottom" secondItem="Zec-vZ-o6T" secondAttribute="bottom" constant="8" id="oZn-jW-gAp"/>
+                                                <constraint firstItem="t65-Bf-EXc" firstAttribute="top" secondItem="YLf-d2-R72" secondAttribute="top" constant="8" id="onG-4X-4Fd"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="Ebn-6c-fwV"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="iconImageView" destination="t65-Bf-EXc" id="NcN-FJ-gfs"/>
                                             <outlet property="nameLabel" destination="Zec-vZ-o6T" id="xu5-F0-Efj"/>
                                         </connections>
                                     </tableViewCell>

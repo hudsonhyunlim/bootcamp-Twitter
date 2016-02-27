@@ -20,10 +20,19 @@ class MenuViewController: UIViewController {
     
     private var viewControllers: [ViewControllerNames: UIViewController] = [:]
     
-    private let menuItems:[String] = [
-        "Home",
-        "Profile",
-        "Mentions",
+    private let menuItems:[[String:String]] = [
+        [
+            "name": "Home",
+            "imageName": "home",
+        ],
+        [
+            "name": "Profile",
+            "imageName": "user"
+        ],
+        [
+            "name": "Mentions",
+            "imageName": "warning"
+        ],
     ]
     
     var hamburgerViewController: HamburgerViewController?
@@ -71,7 +80,7 @@ extension MenuViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("com.lyft.MenuCell", forIndexPath: indexPath) as! MenuCell
         
-        cell.nameLabel.text = self.menuItems[indexPath.row]
+        cell.menuConf = self.menuItems[indexPath.row]
         
         return cell
     }
